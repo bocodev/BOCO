@@ -1,0 +1,6 @@
+usr/local/bin/boco-qt usr/bin
+share/pixmaps/boco32.xpm usr/share/pixmaps
+share/pixmaps/boco16.xpm usr/share/pixmaps
+share/pixmaps/boco128.png usr/share/pixmaps
+debian/boco-qt.desktop usr/share/applications
+debian/boco-qt.protocol usr/share/kde4/services/

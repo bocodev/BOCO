@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Boco 
+Comment=Boco P2P Cryptocurrency
+Comment[fr]=Boco, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Boco, eşten eşe kriptografik sanal para birimi
+Exec=boco-qt %u
+Terminal=false
+Type=Application
+Icon=boco128
+MimeType=x-scheme-handler/boco;
+Categories=Office;Finance;
+StartupWMClass=boco-qt
