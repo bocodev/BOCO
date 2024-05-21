@@ -940,7 +940,7 @@ for staking</source>
     </message>
     <message>
         <location line="-558"/>
-        <source>Amount of BOCO and zBOCO staked.</source>
+        <source>Amount of BOCO staked.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1981,7 +1981,7 @@ NODES</source>
     <message>
         <location line="+21"/>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/ARRRgQzpdZ</source>
+        https://discord.gg/Rhhk6cjVgH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1990,44 +1990,8 @@ NODES</source>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <location line="-187"/>
-        <source>Enable automatic minting of BOCO units to zBOCO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+6"/>
-        <source>Enable zBOCO Automint</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+7"/>
-        <source>Enable automatic zBOCO minting from specific addresses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+6"/>
         <source>Enable Automint Addresses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+11"/>
-        <source>Percentage of incoming BOCO which get automatically converted to zBOCO via Zerocoin Protocol (min: 10%)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Percentage of autominted zBOCO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+30"/>
-        <location line="+16"/>
-        <source>Wait with automatic conversion to Zerocoin until enough BOCO for this denomination is available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="-13"/>
-        <source>Preferred Automint zBOCO Denomination</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3025,11 +2989,6 @@ Address: %4
     <message>
         <location line="+104"/>
         <source>Custom Backup Path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+29"/>
-        <source>Custom zBOCO Backup Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4395,7 +4354,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
     </message>
     <message>
         <location line="+148"/>
-        <source>https://boco.cash/</source>
+        <source>https://boco.com/</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4415,13 +4374,12 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            BOCO is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  BOCO incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zBOCO) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
                            BOCO utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of BOCO to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation type="unfinished"></translation>
@@ -4489,7 +4447,7 @@ There was an error trying to save the address list to %1. Please try again.</sou
         <source>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;
                            We have support channels in most of our official chat groups, for example
-                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.gg/ARRRgQzpdZ&apos;&gt;
+                           &lt;a style=&apos;color: #b088ff&apos; href=&apos;https://discord.gg/Rhhk6cjVgH&apos;&gt;
                            #support in our Discord&lt;/a&gt;.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
@@ -4521,8 +4479,6 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -5660,7 +5616,7 @@ Are you sure?
     </message>
     <message>
         <location line="+0"/>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message numerus="yes">
@@ -6270,27 +6226,28 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <location line="+89"/>
-        <source>Boco Beyond</source>
+        <source>Welcome to
+Boco Wallet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+27"/>
-        <source>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</source>
+        <source>BOCO is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+93"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BOCO believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+83"/>
-        <source>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</source>
+        <source>The masternode network is BOCO&apos;s second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="-103"/>
-        <source>Be inspired by community</source>
+        <source>How BOCO respects your privacy?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6342,11 +6299,6 @@ Select fewer inputs with coin control.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+3"/>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation type="unfinished">Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</translation>
-    </message>
-    <message>
         <location line="+6"/>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation type="unfinished">Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</translation>
@@ -6360,11 +6312,6 @@ Select fewer inputs with coin control.</source>
         <location line="+3"/>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation type="unfinished">Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</translation>
-    </message>
-    <message>
-        <location line="+3"/>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+6"/>
@@ -6732,11 +6679,6 @@ Select fewer inputs with coin control.</source>
         <translation type="unfinished">Error reading from database, shutting down.</translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+1"/>
         <source>Error</source>
         <translation type="unfinished">Error</translation>
@@ -6862,16 +6804,6 @@ Select fewer inputs with coin control.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+2"/>
-        <source>Reindexing zerocoin database...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Reindexing zerocoin failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+7"/>
         <source>Selected coins value is less than payment target</source>
         <translation type="unfinished"></translation>
@@ -6893,12 +6825,7 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <location line="-144"/>
-        <source>Disable all BOCO specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+20"/>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
+        <source>Disable all BOCO specific functionality (Masternodes) (0-1, default: %u)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7018,16 +6945,6 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Failed to select a zerocoin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
         <source>Failed to write coin serial number into wallet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7070,11 +6987,6 @@ Select fewer inputs with coin control.</source>
         <location line="+1"/>
         <source>Loading block index...</source>
         <translation type="unfinished">Loading block index...</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Loading budget cache...</source>
-        <translation type="unfinished">Loading budget cache...</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7354,11 +7266,6 @@ Select fewer inputs with coin control.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+1"/>
-        <source>Failed to find Zerocoins in wallet database</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location line="+7"/>
         <source>Fee (in %s/kB) to add to transactions you send (default: %s)</source>
         <translation type="unfinished"></translation>
@@ -7620,11 +7527,6 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Synchronizing budgets...</source>
-        <translation type="unfinished">Synchronizing budgets...</translation>
-    </message>
-    <message>
-        <location line="+1"/>
         <source>Synchronizing masternode winners...</source>
         <translation type="unfinished">Synchronizing masternode winners...</translation>
     </message>
@@ -7637,11 +7539,6 @@ Select fewer inputs with coin control.</source>
         <location line="+1"/>
         <source>Synchronizing sporks...</source>
         <translation type="unfinished">Synchronizing sporks...</translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Syncing zBOCO wallet...</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7795,11 +7692,6 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>Value is below the smallest available denomination (= 1) of zBOCO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
         <source>Verifying blocks...</source>
         <translation type="unfinished">Verifying blocks...</translation>
     </message>
@@ -7855,11 +7747,6 @@ Select fewer inputs with coin control.</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>You don&apos;t have enough Zerocoins in your wallet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation type="unfinished">You need to rebuild the database using -reindex to change -txindex</translation>
     </message>
@@ -7871,16 +7758,6 @@ Select fewer inputs with coin control.</source>
     <message>
         <location line="+1"/>
         <source>ZeroMQ notification options:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location line="+1"/>
-        <source>Zerocoin options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

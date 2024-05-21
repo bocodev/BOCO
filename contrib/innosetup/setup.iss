@@ -2,10 +2,10 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Boco"
-#define MyAppPublisher "2022 Boco developers"
+#define MyAppPublisher "2024 Boco developers"
 #define MyAppURL "https://boco.cash/"
 #define MyAppExeName "boco-qt.exe"
-//#define MyAppExtraData "https://explorer.decenomy.net/bootstraps/BOCO/bootstrap.zip"
+//#define MyAppExtraData "https://downloads.masternodes.biz/snapshots/boco.zip"
 #define MyAppVersion GetVersionNumbersString(".\package\" + MyAppExeName)
 
 #include ReadReg(HKLM, 'Software\WOW6432Node\Mitrich Software\Inno Download Plugin', 'InstallDir') + '\idp.iss'
@@ -74,10 +74,8 @@ Type: filesandordirs; Name: {code:GetDataDir}\blocks; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\chainstate; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\database; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\sporks; Components: bootstrap
-Type: filesandordirs; Name: {code:GetDataDir}\zerocoin; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\.lock; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\banlist.dat; Components: bootstrap
-Type: filesandordirs; Name: {code:GetDataDir}\budget.dat; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\fee_estimates.dat; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\mncache.dat; Components: bootstrap
 Type: filesandordirs; Name: {code:GetDataDir}\mnpayments.dat; Components: bootstrap
@@ -160,4 +158,3 @@ begin
   { Return the selected DataDir }
   Result := DataDirPage.Values[0];
 end;
-

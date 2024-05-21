@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2015 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,6 +20,7 @@
 #include "guiinterface.h"
 #include "hash.h"
 #include "main.h"
+#include "masternodeman.h"
 #include "miner.h"
 #include "netmessagemaker.h"
 #include "primitives/transaction.h"
@@ -39,11 +40,17 @@
 #include <miniupnpc/upnperrors.h>
 #endif
 
-
 #include <math.h>
+#include <random>
+#include <algorithm>
 
 // Dump addresses to peers.dat and banlist.dat every 15 minutes (900s)
 #define DUMP_ADDRESSES_INTERVAL 900
+
+// Query the DNS seeds at every 10 minutes (600s)
+#define DNS_SEEDS_INTERVAL 600
+
+#define MAX_MASTERNODES_SEEDED_AT_ONCE 10
 
 // We add a random period time (0 to 1 seconds) to feeler connections to prevent synchronization.
 #define FEELER_SLEEP_WINDOW 1
@@ -72,6 +79,7 @@ static const uint64_t RANDOMIZER_ID_LOCALHOSTNONCE = 0xd93e69e2bbfa5735ULL; // S
 //
 bool fDiscover = true;
 bool fListen = true;
+CService sHostIp;
 RecursiveMutex cs_mapLocalHost;
 std::map<CNetAddr, LocalServiceInfo> mapLocalHost;
 static bool vfLimited[NET_MAX] = {};
@@ -406,10 +414,11 @@ CNode* CConnman::ConnectNode(CAddress addrConnect, const char* pszDest, bool fCo
         pszDest ? 0.0 : (double)(GetAdjustedTime() - addrConnect.nTime) / 3600.0);
 
     // Connect
-    SOCKET hSocket = INVALID_SOCKET;;
+    SOCKET hSocket = INVALID_SOCKET;
+
     bool proxyConnectionFailed = false;
-    if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, Params().GetDefaultPort(), nConnectTimeout, &proxyConnectionFailed) :
-                  ConnectSocket(addrConnect, hSocket, nConnectTimeout, &proxyConnectionFailed)) {
+    if (pszDest ? ConnectSocketByName(addrConnect, hSocket, pszDest, Params().GetDefaultPort(), nConnectTimeout, &proxyConnectionFailed, sHostIp) :
+                  ConnectSocket(addrConnect, hSocket, nConnectTimeout, &proxyConnectionFailed, sHostIp)) {
         if (!IsSelectableSocket(hSocket)) {
             LogPrintf("Cannot create connection: non-selectable socket created (fd >= FD_SETSIZE ?)\n");
             CloseSocket(hSocket);
@@ -929,12 +938,12 @@ void CheckOffsetDisconnectedPeers(const CNetAddr& ip)
 
         LogPrintf("*** Warning: %s %s\n", strWarn1, strWarn2);
 
-        static int64_t nLastGUINotif = 0;
-        int64_t now = GetTime();
-        if (nLastGUINotif + 40 < now) { // Notify the GUI if needed.
-            nLastGUINotif = now;
-            uiInterface.ThreadSafeMessageBox(strprintf("%s\n\n%s", strWarn1, strWarn2), _("Warning"), CClientUIInterface::MSG_ERROR);
-        }
+        // static int64_t nLastGUINotif = 0;
+        // int64_t now = GetTime();
+        // if (nLastGUINotif + 40 < now) { // Notify the GUI if needed.
+        //     nLastGUINotif = now;
+        //     uiInterface.ThreadSafeMessageBox(strprintf("%s\n\n%s", strWarn1, strWarn2), _("Warning"), CClientUIInterface::MSG_ERROR);
+        // }
     }
 }
 
@@ -1059,6 +1068,32 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     int nMaxInbound = nMaxConnections - (nMaxOutbound + nMaxFeeler);
     assert(nMaxInbound > 0);
 
+    // close lagging nodes' connection
+    {
+        LOCK(cs_vNodes);
+        for (CNode* pnode : vNodes) {
+            int64_t nPingUsecWait = 0;
+            if ((pnode->nPingNonceSent != 0) && (pnode->nPingUsecStart != 0)) {
+                nPingUsecWait = GetTimeMicros() - pnode->nPingUsecStart;
+            }
+            if (pnode->nPingUsecTime > 5 * 1e6 || nPingUsecWait > 5 * 1e6) {
+                pnode->fDisconnect = true;
+                pnode->CloseSocketDisconnect();
+            }
+        }
+    }
+
+    // close obsolete nodes' connection
+    {
+        LOCK(cs_vNodes);
+        for (CNode* pnode : vNodes) {
+            if (pnode->nVersion > 0 && pnode->nVersion < ActiveProtocol()) {
+                pnode->fDisconnect = true;
+                pnode->CloseSocketDisconnect();
+            }
+        }
+    }
+
     if (hSocket != INVALID_SOCKET)
         if (!addr.SetSockAddr((const struct sockaddr*)&sockaddr))
             LogPrintf("Warning: Unknown socket family\n");
@@ -1067,7 +1102,7 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
     {
         LOCK(cs_vNodes);
         for (CNode* pnode : vNodes)
-            if (pnode->fInbound)
+            if (pnode->fInbound && !pnode->fDisconnect)
                 nInbound++;
     }
 
@@ -1090,13 +1125,29 @@ void CConnman::AcceptConnection(const ListenSocket& hListenSocket) {
         return;
     }
 
-    if (nInbound >= nMaxConnections - MAX_OUTBOUND_CONNECTIONS) {
-        if (!AttemptToEvictConnection(whitelisted)) {
-            // No connection to evict, disconnect the new connection
-            LogPrint(BCLog::NET, "failed to find an eviction candidate - connection dropped (full)\n");
-            CloseSocket(hSocket);
-            return;
+    CNode* dupnode = FindNode((CNetAddr)addr);
+    if (dupnode && !whitelisted) {
+        // drop nodes already connected
+        LogPrint(BCLog::NET, "dropped, %s already connected\n",addr.ToStringIP());
+        CloseSocket(hSocket);
+        return;
+    }
+
+    if (nInbound >= nMaxConnections - nMaxOutbound) {
+        // try to evict 10% of the inbound connections
+        int n = std::max(1, (nMaxConnections - nMaxOutbound) / 10);
+        int evicted = 0;
+        for(int i = 0; i < n; i++) {
+            if (!AttemptToEvictConnection(whitelisted) && evicted == 0) {
+                // No connection to evict, disconnect the new connection
+                LogPrint(BCLog::NET, "failed to find an eviction candidate - connection dropped (full)\n");
+                CloseSocket(hSocket);
+                return;
+            } else {
+                evicted++;
+            }
         }
+        LogPrint(BCLog::NET, "%d connections evicted\n", evicted);
     }
 
     NodeId id = GetNewNodeId();
@@ -1124,6 +1175,21 @@ void CConnman::ThreadSocketHandler()
         //
         {
             LOCK(cs_vNodes);
+
+            // close lagging nodes' connection
+            {
+                LOCK(cs_vNodes);
+                for (CNode* pnode : vNodes) {
+                    int64_t nPingUsecWait = 0;
+                    if ((pnode->nPingNonceSent != 0) && (pnode->nPingUsecStart != 0)) {
+                        nPingUsecWait = GetTimeMicros() - pnode->nPingUsecStart;
+                    }
+                    if (pnode->nPingUsecTime > 5 * 1e6 || nPingUsecWait > 5 * 1e6) {
+                        pnode->fDisconnect = true;
+                    }
+                }
+            }
+
             // Disconnect unused nodes
             std::vector<CNode*> vNodesCopy = vNodes;
             for (CNode* pnode : vNodesCopy) {
@@ -1529,13 +1595,38 @@ void CConnman::ThreadDNSAddressSeed()
             return;
         }
     }
+    
+    std::vector<CDNSSeedData> vPeers(Params().DNSSeeds());
+    std::vector<CMasternode> vMasternodes = mnodeman.GetFullMasternodeVector();
 
-    const std::vector<CDNSSeedData>& vSeeds = Params().DNSSeeds();
-    int found = 0;
+    std::random_device rd;
+    std::mt19937 g(rd());
+ 
+    std::shuffle(vMasternodes.begin(), vMasternodes.end(), g);
+    
+    int ipV4Count = 0;
+    int ipV6Count = 0;   
+
+    for(const CMasternode& mn : vMasternodes) {
+
+        if(mn.addr.IsIPv4() && ipV4Count < MAX_MASTERNODES_SEEDED_AT_ONCE) {
+            vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+            ipV4Count++;
+        }
+
+        if(mn.addr.IsIPv6() && ipV6Count < MAX_MASTERNODES_SEEDED_AT_ONCE) {
+            vPeers.push_back(CDNSSeedData(mn.addr.ToStringIP(), mn.addr.ToStringIP()));
+            ipV6Count++;
+        }
+
+        if(ipV4Count >= ipV6Count >= MAX_MASTERNODES_SEEDED_AT_ONCE) break;
+    }
 
     LogPrintf("Loading addresses from DNS seeds (could take a while)\n");
 
-    for (const CDNSSeedData& seed : vSeeds) {
+    int found = 0;
+
+    for (const CDNSSeedData& seed : vPeers) {
         if(stopping) return;
         if (HaveNameProxy()) {
             AddOneShot(seed.host);
@@ -1639,7 +1730,7 @@ void CConnman::ThreadOpenConnections()
             return;
 
         // Add seed nodes if DNS seeds are all down (an infrastructure attack?).
-        if (addrman.size() == 0 && (GetTime() - nStart > 2)) {
+        if (addrman.size() == 0 && (GetTime() - nStart > 60)) {
             static bool done = false;
             if (!done) {
                 LogPrintf("Adding fixed seed nodes as DNS doesn't seem to be available.\n");
@@ -2168,6 +2259,9 @@ bool CConnman::Start(CScheduler& scheduler, std::string& strNodeError, Options c
     // Dump network addresses
     scheduler.scheduleEvery(boost::bind(&CConnman::DumpData, this), DUMP_ADDRESSES_INTERVAL);
 
+    // Query DNS seeds
+    scheduler.scheduleEvery(boost::bind(&CConnman::ThreadDNSAddressSeed, this), DNS_SEEDS_INTERVAL);
+
     return true;
 }
 
@@ -2372,6 +2466,14 @@ bool CConnman::DisconnectNode(NodeId id)
         }
     }
     return false;
+}
+
+void CConnman::DisconnectAll()
+{
+    LOCK(cs_vNodes);
+    for(CNode* pnode : vNodes) {
+        pnode->fDisconnect = true;
+    }
 }
 
 void CConnman::RelayInv(CInv& inv)
@@ -2608,4 +2710,3 @@ uint64_t CConnman::CalculateKeyedNetGroup(const CAddress& ad)
 
     return GetDeterministicRandomizer(RANDOMIZER_ID_NETGROUP).Write(&vchNetGroup[0], vchNetGroup.size()).Finalize();
 }
-

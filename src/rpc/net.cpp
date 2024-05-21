@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2015 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,10 +17,42 @@
 #include "guiinterface.h"
 #include "util.h"
 #include "version.h"
-
-
 #include <univalue.h>
 
+UniValue checkconnection(const JSONRPCRequest& request)
+{
+    if (request.fHelp || (request.params.size() != 1))
+        throw std::runtime_error(
+            "checkconnection \"address\"\n"
+            "\nAttempts to connect to specified node\n"
+
+            "\nArguments:\n"
+            "1. \"node\"     (string, required) The node address (see getpeerinfo for nodes)\n"
+
+            "\nExamples:\n" +
+            HelpExampleCli("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\"") + HelpExampleRpc("checkconnection", "\"192.168.0.6:__PORT_MAINNET__\""));
+
+    std::string strNode = request.params[0].get_str();
+    CService service = CService(strNode, Params().GetDefaultPort());
+    CAddress addr(service, NODE_NETWORK);
+
+    if(!g_connman)
+        throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
+
+    bool connected = false;
+    g_connman->ForEachNode([&connected, &service](CNode* pnode) {
+        if ((CNetAddr)pnode->addr == (CNetAddr)service)
+            connected = true;
+    });
+
+    if(!connected) {
+        if (!g_connman->OpenNetworkConnection(addr, true, nullptr)) {
+            throw std::runtime_error("Could not connect to " + service.ToString());
+        }
+    }
+    
+    return NullUniValue;
+}
 
 UniValue getconnectioncount(const JSONRPCRequest& request)
 {
@@ -181,8 +213,12 @@ UniValue addnode(const JSONRPCRequest& request)
     std::string strCommand;
     if (request.params.size() == 2)
         strCommand = request.params[1].get_str();
-    if (request.fHelp || request.params.size() != 2 ||
-        (strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
+    else
+        strCommand = "onetry";
+
+    if (request.fHelp || 
+        (request.params.size() != 1 && request.params.size() != 2) ||
+        (request.params.size() == 2 && strCommand != "onetry" && strCommand != "add" && strCommand != "remove"))
         throw std::runtime_error(
             "addnode \"node\" \"add|remove|onetry\"\n"
             "\nAttempts add or remove a node from the addnode list.\n"
@@ -190,10 +226,10 @@ UniValue addnode(const JSONRPCRequest& request)
 
             "\nArguments:\n"
             "1. \"node\"     (string, required) The node (see getpeerinfo for nodes)\n"
-            "2. \"command\"  (string, required) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' to try a connection to the node once\n"
+            "2. \"command\"  (string, optional) 'add' to add a node to the list, 'remove' to remove a node from the list, 'onetry' (default) to try a connection to the node once\n"
 
             "\nExamples:\n" +
-            HelpExampleCli("addnode", "\"192.168.0.6:21778\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:21778\", \"onetry\""));
+            HelpExampleCli("addnode", "\"192.168.0.6:11427\" \"onetry\"") + HelpExampleRpc("addnode", "\"192.168.0.6:11427\", \"onetry\""));
 
     if(!g_connman)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
@@ -261,7 +297,7 @@ UniValue getaddednodeinfo(const JSONRPCRequest& request)
             "    \"connected\" : true|false,          (boolean) If connected\n"
             "    \"addresses\" : [                    (list of objects) Only when connected = true\n"
             "       {\n"
-            "         \"address\" : \"192.168.0.201:21778\",  (string) The boco server IP and port we're connected to\n"
+            "         \"address\" : \"192.168.0.201:11427\",  (string) The boco server IP and port we're connected to\n"
             "         \"connected\" : \"outbound\"           (string) connection, inbound or outbound\n"
             "       }\n"
             "     ]\n"

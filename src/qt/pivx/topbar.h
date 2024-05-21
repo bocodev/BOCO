@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,6 +42,7 @@ public:
     void run(int type) override;
     void onError(QString error, int type) override;
     void unlockWallet();
+    void onStakingBtnClicked();
 
 public Q_SLOTS:
     void updateBalances(const interfaces::WalletBalances& newBalance);
@@ -59,6 +60,7 @@ Q_SIGNALS:
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
+
 private Q_SLOTS:
     void onBtnReceiveClicked();
     void onThemeClicked();
@@ -70,18 +72,21 @@ private Q_SLOTS:
     void openLockUnlock();
     void onBtnConfClicked();
     void onBtnMasternodesClicked();
+    void onBtnPrivacyClicked();
     void refreshProgressBarSize();
     void expandSync();
+
 private:
     Ui::TopBar *ui;
     LockUnlock *lockUnlockWidget = nullptr;
+    QTimer* timerStakingIcon = nullptr;
     QProgressBar* progressBar = nullptr;
 
     int nDisplayUnit = -1;
-    QTimer* timerStakingIcon = nullptr;
     bool isInitializing = true;
 
     void updateTorIcon();
+    void privacyUpdate();
 };
 
 #endif // TOPBAR_H

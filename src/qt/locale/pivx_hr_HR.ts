@@ -731,8 +731,8 @@ za staking</translation>
         <translation>Filtriraj prema</translation>
     </message>
     <message>
-        <source>Amount of BOCO and zBOCO staked.</source>
-        <translation>Iznos BOCO i zBOCO koji se stakea.</translation>
+        <source>Amount of BOCO staked.</source>
+        <translation>Iznos BOCO koji se stakea.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1577,45 +1577,17 @@ NODEOVI</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/ARRRgQzpdZ</source>
+        https://discord.gg/Rhhk6cjVgH</source>
         <translation>Jezik nedostaje ili prijevod nije potpun? Pomozite s prijevodom ovdje:
-        https://discord.gg/ARRRgQzpdZ</translation>
+        https://discord.gg/Rhhk6cjVgH</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mapiranje porta koristeći &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BOCO units to zBOCO</source>
-        <translation>Omogući automatsko stvaranje BOCO jedinica na zBOCO</translation>
-    </message>
-    <message>
-        <source>Enable zBOCO Automint</source>
-        <translation>Omogući automatsko stvaranje zBOCO-a</translation>
-    </message>
-    <message>
-        <source>Enable automatic zBOCO minting from specific addresses</source>
-        <translation>Omogući automatsko stvaranje zBOCO-a s određjenih adresa</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Omogući Automint adrese</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BOCO which get automatically converted to zBOCO via Zerocoin Protocol (min: 10%)</source>
-        <translation>Postotak dolaznih BOCO koji se automatski pretvara u zBOCO putem Zerocoin Protokola (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBOCO</source>
-        <translation>Postotak automatski stvorenog zBOCO-a</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BOCO for this denomination is available</source>
-        <translation>Pričekajte s automatskom pretvorbom u Zerocoin dok ne bude dostupno dovoljno BOCO-a za ovu denominaciju</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBOCO Denomination</source>
-        <translation>Preferirana denominacija za automatsko stvaranje zBOCO-a</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2381,10 +2353,6 @@ Adresa: %4
         <translation>Put prilagođenog sigurnosnog kopiranja:</translation>
     </message>
     <message>
-        <source>Custom zBOCO Backup Path:</source>
-        <translation>Prilagođeni put zBOCO sigurnosne kopije:</translation>
-    </message>
-    <message>
         <source>Custom Backups Threshold:</source>
         <translation>Prag za prilagođene sigurnosne kopije:</translation>
     </message>
@@ -2436,7 +2404,7 @@ Adresa: %4
         <source>Deletes all local blockchain folders so the wallet synchronizes from scratch.</source>
         <translation>Briše sve lokalne blockchain direktorije pa se novčanik sinkronizira od početka.</translation>
     </message>
-    <message>   
+    <message>
         <source>The buttons below will restart the wallet with command-line options to repair the wallet, fix issues with corrupt blockhain files or missing/obsolete transactions.</source>
         <translation>Donji gumbi će ponovo pokrenuti novčanik pomoću opcija naredbenog retka za popravak lisnice, popraviti probleme s korumpiranim datotekama blockchaina ili nedostajućim / zastarjelim transakcijama.</translation>
     </message>
@@ -3441,8 +3409,8 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
         <translation>2) Zašto se moji BOCO ne mogu potrošiti?</translation>
     </message>
     <message>
-        <source>https://boco.cash/</source>
-        <translation>https://boco.cash/</translation>
+        <source>https://boco.com/</source>
+        <translation>https://boco.com/</translation>
     </message>
     <message>
         <source>1</source>
@@ -3458,22 +3426,19 @@ Došlo je do greške prilikom spremanja popisa adresa u %1. Molimo pokušajte po
                            BOCO is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  BOCO incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zBOCO) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            BOCO utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of BOCO to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
 BOCO je oblik digitalnog online novca koji koristi blockchain tehnologiju
 koji se lako može slati i primati globalno, trenutno, i gotovo bez naknade.
-BOCO uključuje vodeću sigurnost  i privatnost na tržištu
-i takođjer je prva PoS (Proof of Stake) kriptovaluta
-koja je implementirala ZeroCoin (zBOCO) i Zerocoin staking.
+BOCO uključuje vodeću sigurnost i privatnost.
 &lt;/p&gt;&lt;p align="justify"&gt;
 BOCO koristi algoritam konsenzusa Proof of Stake (PoS),
 omogućujući svim vlasnicima BOCO-a sudjelovanje u zarađi blokovih nagrada
@@ -3556,8 +3521,6 @@ da biste vidjeli i mogli potrošiti sredstva na mreži.
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3597,8 +3560,6 @@ Te usluge uključuju:
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Decentralizirano upravljanje (glasanje o zahtjevima)&lt;/li&gt;
-&lt;li&gt;Decentralizirani sustav proračuna (riznica)&lt;/li&gt;
 &lt;li&gt;Validacija transakcija unutar svakog bloka&lt;/li&gt;
 &lt;li&gt;Djeluje kao dodatni full node u mreži&lt;/li&gt;
 &lt;/ul&gt;
@@ -4459,7 +4420,7 @@ Jeste li sigurni?
         <translation>Staking aktivan</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Staking nije aktivan</translation>
     </message>
     <message>
@@ -4899,24 +4860,26 @@ se nova sigurnosna kopija.
         <translation>Odaberite jezik</translation>
     </message>
     <message>
-        <source>Boco Beyond</source>
-        <translation>Boco Beyond</translation>
+        <source>Welcome to
+Boco Wallet</source>
+        <translation>Dobrodošli u
+        Boco temeljni novčanik</translation>
     </message>
     <message>
-        <source>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</source>
-        <translation>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</translation>
+        <source>BOCO is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BOCO je najinovativnija blockchain tehnologija na svijetu bazirana na Proof of Stake tehnologiji. Razvijena je od strane vrlo iskusnih programera i kriptografa.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BOCO believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kao što kaže naš manifest: Privatnost je temeljno ljudsko pravo o kojemu se ne pregovara; korisnicima daje slobodu dijeljenja svojih podataka kad god i s kim god žele - BOCO vjeruje u suverenitet.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</source>
-        <translation>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</translation>
+        <source>The masternode network is BOCO's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Masternode mreža je mreža drugog sloja BOCO-a na vrhu blockchaina koja omogućuje našem DAO-u pružanje decentraliziranog upravljanja i riznice.</translation>
     </message>
     <message>
-        <source>Be inspired by community</source>
-        <translation>Be inspired by community</translation>
+        <source>How BOCO respects your privacy?</source>
+        <translation>Kako BOCO poštuje Vašu privatnost?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4954,10 +4917,6 @@ se nova sigurnosna kopija.
         <translation>Nije moguće dobiti zaključavanje na direktoriju podataka %s. Boco vjerojatno već radi.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Promjena ponašanja glasova na automatskom finaliziranom proračunu. mode = auto: Glasujte samo za točan završeni proračun s mojim generiranim proračunom. (niz, zadani: automatski)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Stalne besplatne transakcije bez ograničenja stope na &lt;n&gt;* 1000 bajta po minuti (zadano: %u)</translation>
     </message>
@@ -4968,10 +4927,6 @@ se nova sigurnosna kopija.
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Izbrišite sve transakcije lisnice i obnavljajte one dijelove blok-lanca kroz -rescan pri pokretanju</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Izbriši sve zerocoin utroške i minteve koji su zabilježeni na blockchain database i reindexiraj ih (0-1, default: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -5267,10 +5222,6 @@ se nova sigurnosna kopija.
         <translation>Pogreška pri čitanju iz baze podataka, zatvaranje.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Greška u zapisivanju zerocoinDB na disk</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Greška</translation>
     </message>
@@ -5371,14 +5322,6 @@ se nova sigurnosna kopija.
         <translation>Preračunavanje BOCO-a u optjecaju...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Reindeksiranje zerocoin databaze...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Reindeksiranje zerocoin neuspjelo</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Odabrana vrijednost novčića je manja od količine za plačanje</translation>
     </message>
@@ -5387,12 +5330,8 @@ se nova sigurnosna kopija.
         <translation>Ovo je priprema za testiranje prije puštanja - upotrebljavajte na vlastiti rizik - nemojte ga koristiti za staking ili trgovinske aplikacije!</translation>
     </message>
     <message>
-        <source>Disable all BOCO specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Onemogući sve specifične funkcije BOCO (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, zadano: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Omogućite SwiftX, prikažite potvrde za zaključane transakcije (bool, zadano: %s)</translation>
+        <source>Disable all BOCO specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Onemogući sve specifične funkcije BOCO (Masternodes) (0-1, zadano: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5467,14 +5406,6 @@ se nova sigurnosna kopija.
         <translation>Failed to parse public spend</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Odabir Zerocoina nije uspjelo</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Neuspjelo brisanje zerocoinDB</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Nije uspio zapisi serijskog broja novčića u novčanik</translation>
     </message>
@@ -5509,10 +5440,6 @@ se nova sigurnosna kopija.
     <message>
         <source>Loading block index...</source>
         <translation>Učitavanje indeksa blokova...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>Učitavanje predmemorije proračuna...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5817,10 +5744,6 @@ se nova sigurnosna kopija.
         <translation>Sinkronizacija završena</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Sinkronizacija proračuna...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>Usklađivanje masternode pobjednika...</translation>
     </message>
@@ -5831,10 +5754,6 @@ se nova sigurnosna kopija.
     <message>
         <source>Synchronizing sporks...</source>
         <translation>Sinkronizacija sporkova...</translation>
-    </message>
-    <message>
-        <source>Syncing zBOCO wallet...</source>
-        <translation>Sinkronizacija zBOCO novčanika...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5945,10 +5864,6 @@ se nova sigurnosna kopija.
         <translation>Korisničko ime za JSON-RPC veze</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBOCO</source>
-        <translation>Vrijednost je niža od najmanje dostupne denominacije (= 1) zBOCO-a</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Provjera blokova...</translation>
     </message>
@@ -5989,10 +5904,6 @@ se nova sigurnosna kopija.
         <translation>Upozorenje: nepodržani argument -debugnet ignoriran, upotrijebite -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Nemate dovoljno Zerocoina u novčaniku</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>orate obnoviti bazu podataka koristeći -index za promjenu -txindexa</translation>
     </message>
@@ -6003,14 +5914,6 @@ se nova sigurnosna kopija.
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Mogućnosti ZeroMQ obavijesti:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Stvaranje Zerocoina dostupno je samo na regtestu</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin mogućnosti:</translation>
     </message>
     <message>
         <source>on startup</source>

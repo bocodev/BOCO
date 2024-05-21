@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -128,7 +128,7 @@ DashboardWidget::DashboardWidget(PIVXGUI* parent) :
     setCssProperty(ui->chartContainer, "container-chart");
     setCssProperty(ui->pushImgEmptyChart, "img-empty-staking-on");
 
-//    setCssBtnSecondary(ui->btnHowTo);
+    setCssBtnSecondary(ui->btnHowTo);
 
     setCssProperty(ui->labelEmptyChart, "text-empty");
     setCssSubtitleScreen(ui->labelMessageEmpty);
@@ -190,14 +190,14 @@ void DashboardWidget::loadWalletModel()
 
         // Read filter settings
         QSettings settings;
-        int filterByType = settings.value("transactionType", TransactionFilterProxy::ALL_TYPES).toInt();
+        int filterByType = TransactionFilterProxy::ALL_TYPES;
 
         filter->setTypeFilter(filterByType); // Set filter
         int filterIndex = ui->comboBoxSortType->findData(filterByType); // Find index
         ui->comboBoxSortType->setCurrentIndex(filterIndex); // Set item in ComboBox
 
         // Read sort settings
-        changeSort(settings.value("transactionSort", SortTx::DATE_DESC).toInt());
+        changeSort(SortTx::DATE_DESC);
 
         txHolder->setFilter(filter);
         ui->listTransactions->setModel(filter);
@@ -210,8 +210,8 @@ void DashboardWidget::loadWalletModel()
             ui->comboBoxSort->setVisible(false);
         }
 
- //       connect(ui->pushImgEmpty, &QPushButton::clicked, window, &PIVXGUI::openFAQ);
- ///       connect(ui->btnHowTo, &QPushButton::clicked, window);
+        connect(ui->pushImgEmpty, &QPushButton::clicked, window, &PIVXGUI::openFAQ);
+        connect(ui->btnHowTo, &QPushButton::clicked, window, &PIVXGUI::openFAQ);
         connect(txModel, &TransactionTableModel::txArrived, this, &DashboardWidget::onTxArrived);
 
         // Notification pop-up for new transaction
@@ -313,10 +313,6 @@ void DashboardWidget::changeSort(int nSortIndex)
     ui->comboBoxSort->setCurrentIndex(nSortIndex);
     filter->sort(nColumnIndex, order);
     ui->listTransactions->update();
-
-    // Store settings
-    QSettings settings;
-    settings.setValue("transactionSort", nSortIndex);
 }
 
 void DashboardWidget::onSortTypeChanged(const QString& value)
@@ -334,10 +330,6 @@ void DashboardWidget::onSortTypeChanged(const QString& value)
     } else {
         showList();
     }
-
-    // Store settings
-    QSettings settings;
-    settings.setValue("transactionType", filterByType);
 }
 
 void DashboardWidget::walletSynced(bool sync)
@@ -462,32 +454,35 @@ void DashboardWidget::initChart()
     ui->chartContainer->setLayout(baseScreensContainer);
     ui->chartContainer->setContentsMargins(0,0,0,0);
     setCssProperty(ui->chartContainer, "container-chart");
+
+    setPrivacy(fPrivacyMode);
 }
 
 void DashboardWidget::changeChartColors()
 {
-    QColor gridLineColorX;
-    QColor linePenColorY;
+    QColor gridLineColor;
+    QColor labelsColor;
     QColor backgroundColor;
-    QColor gridY;
+    
     if (isLightTheme()) {
-        gridLineColorX = QColor(255,255,255);
-        linePenColorY = gridLineColorX;
-        backgroundColor = linePenColorY;
-        axisY->setGridLineColor(QColor("#777777"));
+        gridLineColor = QColor("#777777");
+        labelsColor = QColor("#77000000");
+        backgroundColor = QColor(255,255,255);
     } else {
-        gridY = QColor(83,83,83);
-        axisY->setGridLineColor(gridY);
-        gridLineColorX = QColor(34,34,38);
-        linePenColorY =  gridLineColorX;
-        backgroundColor = linePenColorY;
+        gridLineColor = QColor("#40ffffff");
+        labelsColor = QColor("#a0ffffff");
+        backgroundColor = QColor(15,11,22);
     }
 
-    axisX->setGridLineColor(gridLineColorX);
-    axisY->setLinePenColor(linePenColorY);
+    axisX->setGridLineColor(backgroundColor);
+    axisY->setGridLineColor(gridLineColor);
+    axisX->setLabelsColor(labelsColor);
+    axisY->setLabelsColor(labelsColor);
+    axisX->setLinePenColor(backgroundColor);
+    axisY->setLinePenColor(backgroundColor);
     chart->setBackgroundBrush(QBrush(backgroundColor));
-    if (set0) set0->setBorderColor(gridLineColorX);
-    if (set1) set1->setBorderColor(gridLineColorX);
+    if (set0) set0->setBorderColor(backgroundColor);
+    if (set1) set1->setBorderColor(backgroundColor);
 }
 
 void DashboardWidget::updateStakeFilter()
@@ -526,7 +521,7 @@ void DashboardWidget::updateStakeFilter()
     }
 }
 
-// pair BOCO, zBOCO
+// pair BOCO
 const QMap<int, QMap<QString, qint64>> DashboardWidget::getAmountBy()
 {
     updateStakeFilter();
@@ -587,7 +582,7 @@ bool DashboardWidget::loadChartData(bool withMonthNames)
     }
 
     chartData = new ChartData();
-    chartData->amountsByCache = getAmountBy(); // pair BOCO, zBOCO
+    chartData->amountsByCache = getAmountBy(); // pair BOCO
 
     std::pair<int,int> range = getChartRange(chartData->amountsByCache);
     if (range.first == 0 && range.second == 0) {
@@ -837,19 +832,12 @@ void DashboardWidget::onChartArrowClicked(bool goLeft)
     }
 
     refreshChart();
-    //Check if data end day is current date and monthfilter is current month
-    bool fEndDayisCurrent = dataenddate  == currentDate.day() && monthFilter == currentDate.month();
 
     if (updateMonth)
         ui->comboBoxMonths->setCurrentIndex(monthFilter - 1);
 
     if (updateYear)
         ui->comboBoxYears->setCurrentText(QString::number(yearFilter));
-
-    // enable/disable the pushButtonChartRight.
-    ui->pushButtonChartRight->setEnabled(!fEndDayisCurrent);
-
-
 }
 
 void DashboardWidget::windowResizeEvent(QResizeEvent* event)
@@ -906,6 +894,21 @@ void DashboardWidget::run(int type)
 void DashboardWidget::onError(QString error, int type)
 {
     inform(tr("Error loading chart: %1").arg(error));
+}
+
+void DashboardWidget::setPrivacy(bool isPrivate) 
+{
+#ifdef USE_QTCHARTS
+    if (axisY) {
+        if(isPrivate) {
+            axisY->hide();
+        } else {
+            axisY->show();
+        }
+    }
+#endif
+
+    ui->listTransactions->update();
 }
 
 void DashboardWidget::processNewTransaction(const QModelIndex& parent, int start, int /*end*/)

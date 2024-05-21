@@ -25,7 +25,7 @@ Links:
 
 • [Twitter](https://twitter.com/boco_cash)
 
-• [Discord](https://discord.gg/cxTPqKhe94)
+• [Discord](https://discord.gg/Rhhk6cjVgH)
 
 • [Telegram](https://t.me/boco_cash_grup)
 

@@ -28,7 +28,7 @@ Drag Boco-Qt to your applications folder, and then run Boco-Qt.
 
 * See the documentation at the [Boco Wiki](https://github.com/boco)
 for help and more information.
-* Join our Discord server [Discord Server](https://discord.gg/uTar2Sd)
+* Join our Discord server [Discord Server](https://discord.gg/Rhhk6cjVgH)
 
 Building
 ---------------------
@@ -56,7 +56,7 @@ The Boco repo's [root README](/README.md) contains relevant information on the d
 
 ### Resources
 * Discuss on the [Boco Homepage](https://boco.cash/).
-* Join the [Boco Discord](https://discord.gg/uTar2Sd).
+* Join the [Boco Discord](https://discord.gg/Rhhk6cjVgH).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

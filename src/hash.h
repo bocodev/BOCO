@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2019 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -769,11 +769,11 @@ inline uint256 HashX11KV(const T1 pbegin, const T1 pend)
     return hash.trim256();
 }
 
-/* ----------- Sapphire 2.0 Hash X11KVS ------------------------------------ */
+/* ----------- Hash X11KVS ------------------------------------ */
 /* - X11, from the original 11 algos used on DASH -------------------------- */
 /* - K, from Kyanite ------------------------------------------------------- */
 /* - V, from Variable, variation of the number iterations on the X11K algo - */
-/* - S, from Sapphire ------------------------------------------------------ */
+/* - S, from Boco ------------------------------------------------------ */
 
 static inline uint32_t le32dec(const void* pp)
 {
@@ -828,4 +828,3 @@ inline uint256 HashX11KVS(const T1 pbegin, const T1 pend, const unsigned int lev
 }
 
 #endif // PIVX_HASH_H
-

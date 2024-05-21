@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -85,8 +85,8 @@ MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
     /* Containers */
     setCssProperty(ui->left, "container");
     ui->left->setContentsMargins(0,20,0,20);
-//    setCssProperty(ui->right, "container-right");
-//    ui->right->setContentsMargins(20,20,20,20);
+    setCssProperty(ui->right, "container-right");
+    ui->right->setContentsMargins(20,20,20,20);
 
     /* Light Font */
     QFont fontLight;
@@ -98,16 +98,17 @@ MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
     setCssSubtitleScreen(ui->labelSubtitle1);
 
     /* Buttons */
+    setCssBtnPrimary(ui->pushButtonReload);
     setCssBtnPrimary(ui->pushButtonSave);
     setCssBtnPrimary(ui->pushButtonStartAll);
     setCssBtnPrimary(ui->pushButtonStartMissing);
 
     /* Options */
-/**    ui->btnAbout->setTitleClassAndText("btn-title-grey", tr("What is a Masternode?"));
+    ui->btnAbout->setTitleClassAndText("btn-title-grey", tr("What is a Masternode?"));
     ui->btnAbout->setSubTitleClassAndText("text-subtitle", tr("FAQ explaining what Masternodes are"));
     ui->btnAboutController->setTitleClassAndText("btn-title-grey", tr("What is a Controller?"));
     ui->btnAboutController->setSubTitleClassAndText("text-subtitle", tr("FAQ explaining what is a Masternode Controller"));
-*/
+
     setCssProperty(ui->listMn, "container");
     ui->listMn->setItemDelegate(delegate);
     ui->listMn->setIconSize(QSize(DECORATION_SIZE, DECORATION_SIZE));
@@ -119,6 +120,7 @@ MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
     setCssProperty(ui->pushImgEmpty, "img-empty-master");
     setCssProperty(ui->labelEmpty, "text-empty");
 
+    connect(ui->pushButtonReload, &QPushButton::clicked, this, &MasterNodesWidget::onReloadClicked);
     connect(ui->pushButtonSave, &QPushButton::clicked, this, &MasterNodesWidget::onCreateMNClicked);
     connect(ui->pushButtonStartAll, &QPushButton::clicked, [this]() {
         onStartAllClicked(REQUEST_START_ALL);
@@ -127,8 +129,8 @@ MasterNodesWidget::MasterNodesWidget(PIVXGUI *parent) :
         onStartAllClicked(REQUEST_START_MISSING);
     });
     connect(ui->listMn, &QListView::clicked, this, &MasterNodesWidget::onMNClicked);
-//    connect(ui->btnAbout, &OptionButton::clicked, [this](){window->openFAQ(5);});
-//    connect(ui->btnAboutController, &OptionButton::clicked, [this](){window->openFAQ(6);});
+    connect(ui->btnAbout, &OptionButton::clicked, [this](){window->openFAQ(5);});
+    connect(ui->btnAboutController, &OptionButton::clicked, [this](){window->openFAQ(6);});
 }
 
 void MasterNodesWidget::showEvent(QShowEvent *event)
@@ -357,7 +359,6 @@ void MasterNodesWidget::onInfoMNClicked()
             // export data
             QString exportedMN = "masternode=1\n"
                                  "externalip=" + address.left(address.lastIndexOf(":")) + "\n" +
-                                 "masternodeaddr=" + address + + "\n" +
                                  "masternodeprivkey=" + index.sibling(index.row(), MNModel::PRIV_KEY).data(Qt::DisplayRole).toString() + "\n";
             GUIUtil::setClipboard(exportedMN);
             inform(tr("Masternode data copied to the clipboard."));
@@ -429,7 +430,7 @@ void MasterNodesWidget::onDeleteMNClicked()
         if (lineCopy.size() == 0) {
             lineCopy = "# Masternode config file\n"
                                     "# Format: alias IP:port masternodeprivkey collateral_output_txid collateral_output_index\n"
-                                    "# Example: mn1 127.0.0.2:21778 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0\n";
+                                    "# Example: mn1 127.0.0.2:11427 93HaYBVUCYjEMeeH1Y4sBGLALQZE1Yc1K64xiqgX37tGBDQL8Xg 2bcd3c84c84f87eaa86e4e56834c92927a07f9e18718810b92e0d0324456a67c 0\n";
         }
 
         streamConfig.close();
@@ -468,6 +469,69 @@ void MasterNodesWidget::onDeleteMNClicked()
     }
 }
 
+void MasterNodesWidget::onReloadClicked()
+{
+    // Remember the previous MN count (for comparison)
+    auto mnconflock = GetBoolArg("-mnconflock", DEFAULT_MNCONFLOCK);
+    auto& entries = masternodeConfig.getEntries();
+    int prevCount = entries.size();
+
+    // Creates a set with the outputs to unlock at the end of the method, and
+    // Save the old entries to restore them in case of an error on the file
+    std::set<COutPoint> outpointsToUnlock;
+    std::vector<CMasternodeConfig::CMasternodeEntry> oldEntries;
+    for (auto mne : entries) {
+        if (mnconflock) {
+            uint256 mnTxHash;
+            mnTxHash.SetHex(mne.getTxHash());
+            COutPoint outpoint = COutPoint(mnTxHash, (unsigned int)std::stoul(mne.getOutputIndex().c_str()));
+            outpointsToUnlock.insert(outpoint);
+        }
+        oldEntries.push_back(mne);
+    }
+
+    // Clear the loaded config
+    masternodeConfig.clear();
+    // Load from disk
+    std::string error;
+    QString message;
+    if (!masternodeConfig.read(error)) {
+        // On Error
+        message = 
+            tr("Error reloading masternode.conf, please fix it, %1")
+                .arg(QString(error.c_str()));
+        outpointsToUnlock.clear();
+    } else {
+        // Success
+        entries = masternodeConfig.getEntries();
+        int newCount = entries.size();
+        message =
+            tr("Successfully reloaded from the masternode.conf file (Prev nodes: %1, New nodes: %2)")
+                .arg(QString(std::to_string(prevCount).c_str()))
+                .arg(QString(std::to_string(newCount).c_str()));
+
+        if (mnconflock) {
+            for (auto& mne : entries) {
+                uint256 mnTxHash;
+                mnTxHash.SetHex(mne.getTxHash());
+                COutPoint outpoint = COutPoint(mnTxHash, (unsigned int)std::stoul(mne.getOutputIndex().c_str()));
+                walletModel->lockCoin(outpoint);
+                outpointsToUnlock.erase(outpoint);
+            }
+        }
+    }
+
+    mnModel->updateMNList();
+
+    if (mnconflock) {
+        for (auto outpoint : outpointsToUnlock) {
+            walletModel->unlockCoin(outpoint);
+        }
+    }
+
+    inform(message);
+}
+
 void MasterNodesWidget::onCreateMNClicked()
 {
     WalletModel::UnlockContext ctx(walletModel->requestUnlock());
@@ -477,7 +541,7 @@ void MasterNodesWidget::onCreateMNClicked()
         return;
     }
 
-    if (walletModel->getBalance() <= (CMasternode::GetMasternodeNodeCollateral(chainActive.Height()))) {
+    if (walletModel->getBalance() <= (CMasternode::GetNextWeekMasternodeCollateral())) {
         inform(tr("Not enough balance to create a masternode.").arg(CURRENCY_UNIT.c_str()));
         return;
     }

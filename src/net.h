@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -71,12 +71,12 @@ static const bool DEFAULT_LISTEN = true;
 #ifdef USE_UPNP
 static const bool DEFAULT_UPNP = USE_UPNP;
 #else
-static const bool DEFAULT_UPNP = false;
+static const bool DEFAULT_UPNP = true;
 #endif
 /** The maximum number of entries in mapAskFor */
 static const size_t MAPASKFOR_MAX_SZ = MAX_INV_SZ;
 /** The maximum number of peer connections to maintain. */
-static const unsigned int DEFAULT_MAX_PEER_CONNECTIONS = 125;
+static const unsigned int DEFAULT_MAX_PEER_CONNECTIONS = 256;
 /** Disconnected peers are added to setOffsetDisconnectedPeers only if node has less than ENOUGH_CONNECTIONS */
 #define ENOUGH_CONNECTIONS 2
 /** Maximum number of peers added to setOffsetDisconnectedPeers before triggering a warning */
@@ -257,6 +257,7 @@ public:
     void GetNodeStats(std::vector<CNodeStats>& vstats);
     bool DisconnectNode(const std::string& node);
     bool DisconnectNode(NodeId id);
+    void DisconnectAll();
 
     unsigned int GetSendBufferSize() const;
 
@@ -451,6 +452,7 @@ bool validateMasternodeIP(const std::string& addrStr);          // valid, reacha
 
 extern bool fDiscover;
 extern bool fListen;
+extern CService sHostIp;
 
 extern std::map<CInv, CDataStream> mapRelay;
 extern std::deque<std::pair<int64_t, CInv> > vRelayExpiration;

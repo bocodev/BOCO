@@ -699,8 +699,8 @@ Stake için kaldırın</translation>
         <translation>Filtrele</translation>
     </message>
     <message>
-        <source>Amount of BOCO and zBOCO staked.</source>
-        <translation>Stake edilmiş BOCO ve zBOCO miktarı</translation>
+        <source>Amount of BOCO staked.</source>
+        <translation>Stake edilmiş BOCO miktarı</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1372,45 +1372,17 @@ Emin misiniz?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/ARRRgQzpdZ</source>
+        https://discord.gg/Rhhk6cjVgH</source>
         <translation>Dil eksik veya çeviri tamamlanmamış mı? Katkıda bulunan çevirilere yardımcı olun:
-        https://discord.gg/ARRRgQzpdZ</translation>
+        https://discord.gg/Rhhk6cjVgH</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Map port using &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BOCO units to zBOCO</source>
-        <translation>BOCO birimlerinin zBOCO'e otomatik basımını ektinleştir</translation>
-    </message>
-    <message>
-        <source>Enable zBOCO Automint</source>
-        <translation>zBOCO Otomatik basımı etkinleştir</translation>
-    </message>
-    <message>
-        <source>Enable automatic zBOCO minting from specific addresses</source>
-        <translation>Belirli bir adresten otomatik zBOCO minting yapılmasını etkinleştir</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Automint adreslerini etkinleştir</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BOCO which get automatically converted to zBOCO via Zerocoin Protocol (min: 10%)</source>
-        <translation>Zerocoin Protokolü üzerinden otomatik olarak zBOCO'ye dönüştürülen gelen BOCO yüzdesi (dakika: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBOCO</source>
-        <translation>Otomatikleştirilmiş zBOCO yüzdesi</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BOCO for this denomination is available</source>
-        <translation>Bu bölen için yeterli BOCO bulunana kadar Zerocoin'e otomatik dönüştürmede kalın</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBOCO Denomination</source>
-        <translation>Tercih edilen Automint zBOCO Nominal değeri</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2070,10 +2042,6 @@ Adres: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Özel Yedekleme Yolu:</translation>
-    </message>
-    <message>
-        <source>Custom zBOCO Backup Path:</source>
-        <translation>Özel zBOCO Yedekleme Yolu:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -2953,22 +2921,19 @@ Verify that you have installed a predetermined text editor.</source>
                            BOCO is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  BOCO incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zBOCO) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            BOCO utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of BOCO to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
                            &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
                            BOCO blockchain teknolojisini kullanan bir dijital online para birimidir
                            global olarak anında ve sıfıra yakın ücretlerle transfer edilebilir
-                           BOCO sektördeki en ileri güvenlik ve gizliliğe sahip olmakla birlikte
-                          Zerocoin (zBOCO) ve Zerocoin staking özelliklerini
-                          uygulayan ilk PoS (Proof of Stake) Kriptoparadır.
+                           BOCO sektördeki en ileri güvenlik ve gizliliğe sahip olmakla birlikte.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            BOCO bir  Proof of Stake (PoS) konsensüs algoritma sistemi kullanmaktadır,
 bu sayede BOCO sahipleri blok ödülü kazanımına katılabilmektedir
@@ -3035,8 +3000,6 @@ bu sayede BOCO sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3076,8 +3039,6 @@ bu sayede BOCO sahipleri blok ödülü kazanımına katılabilmektedir
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;Merkeziyetsiz yönetim (Teklif Onaylama)&lt;/li&gt;
-                           &lt;li&gt;Merkeziyetsiz bütçe sistemi (Hazine)&lt;/li&gt;
                            &lt;li&gt;Her blogun içinde işlem onayı&lt;/li&gt;
                            &lt;li&gt;Ağda ek bir düğüm olarak görev yapmak&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3858,7 +3819,7 @@ Emin misiniz?
         <translation>Stake etkin</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Stake kapalı</translation>
     </message>
     <message>
@@ -4136,24 +4097,26 @@ Emin misiniz?
         <translation>Dilinizi seçin</translation>
     </message>
     <message>
-        <source>Boco Beyond</source>
-        <translation>Boco Beyond</translation>
+        <source>Welcome to
+Boco Wallet</source>
+        <translation>Boco Cüzdanı'na
+Hoşgeldiniz</translation>
     </message>
     <message>
-        <source>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</source>
-        <translation>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</translation>
+        <source>BOCO is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BOCO Proof of Stake tabanlı dünyadaki en yenilikçi blockchain teknolojisidir. Yüksek tecrübeye sahip yazılımcılar ve kriptograflardan oluşan bir ekip tarafından geliştirilmiştir.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BOCO believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Manifestomuzda yazdığı gibi: Gizlilik, pazarlık yapılamayacak temel bir insan hakkıdır; kullanıcılarına istedikleri zaman ve istedikleri kişiyle verilerini paylaşma özgürlüğü verir - BOCO özerkliğe inanır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</source>
-        <translation>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</translation>
+        <source>The masternode network is BOCO's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Masternode ağı dağıtık yönetim ve hazine yönetimini sağlayan BOCO blockchaini üzerindeki ikinci katmandır.</translation>
     </message>
     <message>
-        <source>Be inspired by community</source>
-        <translation>Be inspired by community</translation>
+        <source>How BOCO respects your privacy?</source>
+        <translation>BOCO gizliliğinize nasıl saygı duyar?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4191,10 +4154,6 @@ Emin misiniz?
         <translation>Veri dizini %s üzerinde bir kilit elde edemiyor. Boco muhtemelen zaten çalışıyor.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Otomatik sonuçlandırılmış bütçe oylama davranışını değiştirin. mode = auto: Yalnızca kesin bütçelendirilmiş bütçeyi, oluşturulan bütçemle eşleştirmek için oy verin. (dize, varsayılan: otomatik)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Ücretsiz işlemleri belirli aralıklarla sınırla &lt;n&gt;*1000 bytes dakikada (varsayılan: %u)</translation>
     </message>
@@ -4205,10 +4164,6 @@ Emin misiniz?
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Tüm cüzdan işlemlerini sil ve sadece -rescan on startup komutuyla ilgili kısmımları sadece kurtar</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Blockchain'e kaydedilmiş tüm zerocoin ve mintleri sil ve tekrar endeksle (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -4380,7 +4335,7 @@ Emin misiniz?
     </message>
     <message>
         <source>You must specify a masternodeprivkey in the configuration. Please see documentation for help.</source>
-        <translation>Konfigürasyonda bir masternodeprivkey belirlemelisiniz.  Lütfen dokümantasyona bakınız.</translation>
+        <translation>Konfigürasyonda bir masternodeprivkey belirlemelisiniz.  Lütfen dokümantasyona bakınız.</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -4499,10 +4454,6 @@ Emin misiniz?
         <translation>Veritabanı okunurken hata oluştu, kapatılıyorç</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>ZerocoinDB diske yazılırken hata oluştu</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
@@ -4603,14 +4554,6 @@ Emin misiniz?
         <translation>BOCO tedariği tekrar hesaplanıyor...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Zerocoin veritabanı tekrar endeksleniyor...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Zerocoin tekrar endekslemesi başarısız</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Seçili koinlerin değeri hedeflenen ödeme tutarından düşük</translation>
     </message>
@@ -4619,12 +4562,8 @@ Emin misiniz?
         <translation>Bu ön-sürümdeki bir test programıdır - riski kabullenerek kullanınız - staking ve ticaret uygulamalarında kullanmayın.</translation>
     </message>
     <message>
-        <source>Disable all BOCO specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>BOCO spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, varsayılan: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>SwiftX'i etkinleştir, kilitli işlemler için doğrulamaları göster (bool, varsayılan: %s)</translation>
+        <source>Disable all BOCO specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>BOCO spesifik tüm fonksiyonaliteyi devre dışı bırak (Masternodes) (0-1, varsayılan: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -4699,14 +4638,6 @@ Emin misiniz?
         <translation>Açık harcama çözümlemesi başarısız</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Zerocoin seçimi başarısız</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>ZerocoinDB silinmesi başarısız</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Cüzdana koin seri numarası yazımı başarısız</translation>
     </message>
@@ -4733,10 +4664,6 @@ Emin misiniz?
     <message>
         <source>Loading block index...</source>
         <translation>Blok endeksi yükleniyor...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>Bütçe ön belleği yükleniyor...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -4995,10 +4922,6 @@ Emin misiniz?
         <translation>Eşzamanlama tamamlandı</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Bütçe eşzamanlanıyor..</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>Masternode kazananları eşzamanlanıyor..</translation>
     </message>
@@ -5009,10 +4932,6 @@ Emin misiniz?
     <message>
         <source>Synchronizing sporks...</source>
         <translation>Sporklar eşzamanlanıyor..</translation>
-    </message>
-    <message>
-        <source>Syncing zBOCO wallet...</source>
-        <translation>zBOCO cüzdanı eşzamanlanıyor..</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5107,10 +5026,6 @@ Emin misiniz?
         <translation>JSON-RPC bağlantısı için kullanıcı adı</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBOCO</source>
-        <translation>Aşağıdaki değer zBOCO'in mümkün olan en küçük bölüm değeridir (=1)</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Bloklar doğrulanıyor...</translation>
     </message>
@@ -5151,10 +5066,6 @@ Emin misiniz?
         <translation>Hata: Desteklenmeyen argüman -debugnet yok sayıldı, -debug=net kullanın.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Cüzdanınızda yeterli miktarda Zerocoin bulunmuyor</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Tx endeksini değiştirmek için veritabanını -reindex kullanarak tekrar oluşturmanız gerekmektedir </translation>
     </message>
@@ -5165,10 +5076,6 @@ Emin misiniz?
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ bildirim seçenekleri:</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Zerocoin seçenekleri:</translation>
     </message>
     <message>
         <source>on startup</source>

@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -91,7 +91,7 @@ SendWidget::SendWidget(PIVXGUI* parent) :
     coinIcon->show();
     coinIcon->raise();
 
-//    setCssProperty(coinIcon, "coin-icon-piv");
+    setCssProperty(coinIcon, "coin-icon-piv");
 
     QSize BUTTON_SIZE = QSize(24, 24);
     coinIcon->setMinimumSize(BUTTON_SIZE);
@@ -128,7 +128,7 @@ void SendWidget::refreshAmounts()
 
     nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
 
-    ui->labelAmountSend->setText(GUIUtil::formatBalance(total, nDisplayUnit, false));
+    ui->labelAmountSend->setText(GUIUtil::formatBalance(total, nDisplayUnit));
 
     CAmount totalAmount = 0;
     if (coinControlDialog->coinControl->HasSelected()) {
@@ -143,8 +143,7 @@ void SendWidget::refreshAmounts()
     ui->labelAmountRemaining->setText(
             GUIUtil::formatBalance(
                     totalAmount,
-                    nDisplayUnit,
-                    false
+                    nDisplayUnit
                     )
     );
 }

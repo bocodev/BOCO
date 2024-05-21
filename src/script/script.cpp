@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -141,11 +141,6 @@ const char* GetOpName(opcodetype opcode)
     case OP_NOP9                   : return "OP_NOP9";                  // OP_NOP9
     case OP_NOP10                  : return "OP_NOP10";                 // OP_NOP10
 
-    // zerocoin
-    case OP_ZEROCOINMINT           : return "OP_ZEROCOINMINT";
-    case OP_ZEROCOINSPEND          : return "OP_ZEROCOINSPEND";
-    case OP_ZEROCOINPUBLICSPEND    : return "OP_ZEROCOINPUBLICSPEND";
-
     case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
 
     default:
@@ -237,21 +232,6 @@ bool CScript::IsPayToScriptHash() const
 bool CScript::StartsWithOpcode(const opcodetype opcode) const
 {
     return (!this->empty() && (*this)[0] == opcode);
-}
-
-bool CScript::IsZerocoinMint() const
-{
-    return StartsWithOpcode(OP_ZEROCOINMINT);
-}
-
-bool CScript::IsZerocoinSpend() const
-{
-    return StartsWithOpcode(OP_ZEROCOINSPEND);
-}
-
-bool CScript::IsZerocoinPublicSpend() const
-{
-    return StartsWithOpcode(OP_ZEROCOINPUBLICSPEND);
 }
 
 bool CScript::IsPushOnly(const_iterator pc) const

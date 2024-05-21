@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,13 +22,11 @@
 
 const QString AddressTableModel::Send = "S";
 const QString AddressTableModel::Receive = "R";
-const QString AddressTableModel::Zerocoin = "X";
 
 struct AddressTableEntry {
     enum Type {
         Sending,
         Receiving,
-        Zerocoin,
         Hidden /* QSortFilterProxyModel will filter these out */
     };
 
@@ -203,38 +201,6 @@ public:
         }
     }
 
-    void updateEntry(const QString &pubCoin, const QString &isUsed, int status)
-    {
-        // Find address / label in model
-        QList<AddressTableEntry>::iterator lower = std::lower_bound(
-            cachedAddressTable.begin(), cachedAddressTable.end(), pubCoin, AddressTableEntryLessThan());
-        QList<AddressTableEntry>::iterator upper = std::upper_bound(
-            cachedAddressTable.begin(), cachedAddressTable.end(), pubCoin, AddressTableEntryLessThan());
-        int lowerIndex = (lower - cachedAddressTable.begin());
-        bool inModel = (lower != upper);
-        AddressTableEntry::Type newEntryType = AddressTableEntry::Zerocoin;
-
-        switch(status)
-        {
-            case CT_NEW:
-                if (inModel) {
-                    qWarning() << "AddressTablePriv_ZC::updateEntry : Warning: Got CT_NEW, but entry is already in model";
-                }
-                parent->beginInsertRows(QModelIndex(), lowerIndex, lowerIndex);
-                cachedAddressTable.insert(lowerIndex, AddressTableEntry(newEntryType, isUsed, pubCoin, 0));
-                parent->endInsertRows();
-                break;
-            case CT_UPDATED:
-                if (!inModel) {
-                    qWarning() << "AddressTablePriv_ZC::updateEntry : Warning: Got CT_UPDATED, but entry is not in model";
-                    break;
-                }
-                lower->type = newEntryType;
-                lower->label = isUsed;
-                parent->emitDataChanged(lowerIndex);
-                break;
-        }
-    }
 
     int size() { return cachedAddressTable.size(); }
     int sizeSend() { return sendNum; }
@@ -416,15 +382,6 @@ void AddressTableModel::updateEntry(const QString& address,
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 
-
-void AddressTableModel::updateEntry(const QString &pubCoin, const QString &isUsed, int status)
-{
-    // Update stealth address book model from Bitcoin core
-    priv->updateEntry(pubCoin, isUsed, status);
-}
-
-
-
 QString AddressTableModel::addRow(const QString& type, const QString& label, const QString& address)
 {
     std::string strLabel = label.toStdString();
@@ -535,11 +492,12 @@ QString AddressTableModel::getAddressToShow() const
     QString addressStr;
     LOCK(wallet->cs_wallet);
     if (!wallet->mapAddressBook.empty()) {
-        for (auto it = wallet->mapAddressBook.rbegin(); it != wallet->mapAddressBook.rend(); ++it ) {
-            if (it->second.purpose == AddressBook::AddressBookPurpose::RECEIVE) {
-                const CTxDestination &address = it->first;
+        for (auto& it : wallet->mapAddressBook) {
+            if (it.second.purpose == AddressBook::AddressBookPurpose::RECEIVE) {
+                const CTxDestination &address = it.first;
                 if (IsValidDestination(address) && IsMine(*wallet, address)) {
                     addressStr = QString::fromStdString(EncodeDestination(address));
+                    break;
                 }
             }
         }

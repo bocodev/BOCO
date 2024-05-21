@@ -1,11 +1,11 @@
-![Example-Logo](https://sappcoin.com/wp-content/uploads/2021/05/Boco-logo-transparent.png)
+![Example-Logo](https://explorer.boco.cash/img/logo.png)
 
 # Boco Masternode Setup Guide
 ***
 ## Required
 1) **BOCO collateral value at current block** ([consult the collateral table](../../README.md#rewards-breakdown))
-2) **Local Wallet https://github.com/BocoBF/Boco/releases/latest**
-3) **VPS with UBUNTU 18.04** (it is possible to work on other versions but it is not tested)
+2) **Local Wallet https://github.com/bocodev/BOCO/releases/latest**
+3) **VPS with UBUNTU 22.04** (it is possible to work on other versions but it is not tested)
 4) **Putty https://www.putty.org/**
 5) **Text editor on your local pc to save data for copy/paste**
 ***
@@ -20,7 +20,7 @@ You will then receive your private key, save it in a txt to use it later.
   ```
   Example:
           createmasternodekey
-          8mTdWPF8Pbc6aTS36W5koLYZWSo5Jby5UJZWCAjDMo7AJYbBwy5
+          xFqAsAj5uC13USHzJDJStmNgmYMZiES7HeSGJE4w53vWSrZ8Lq
 * Still at Debug Console type ***getmasternodeoutputs*** and save txhash and outputidx on a txt
   ```
   Exemple:
@@ -32,7 +32,7 @@ You will then receive your private key, save it in a txt to use it later.
 * Once logged in your vps, *copy/paste* each line one by one with *Enter*
 
 ```
-wget -q https://raw.githubusercontent.com/BocoBF/Boco/master/contrib/masternodesetup/masternodesetup.sh
+wget -q https://raw.githubusercontent.com/bocodev/BOCO/master/contrib/masternodesetup/masternodesetup.sh
 ```
 
 ```
@@ -70,10 +70,10 @@ Do not close your terminal/ command prompt window at this point.
 
 * Open the Masternode Configuration file (tools – open masternode configuration file) and add a new line (without #) using this template (bold needs to be changed) in the final save it and close the editor
 
-**ALIAS VPS_IP**:21778 **masternodeprivkey TXhash Output**
+**ALIAS VPS_IP**:11427 **masternodeprivkey TXhash Output**
 
 		Example:
-		MN1 149.28.232.213:21778 8mTdWPF8Pbc6aTS36W5koLYZWSo5Jby5UJZWCAjDMo7AJYbBwy5 726f3c137b1c567efdbe3bf0b0a061437a8ed52e515e709868d0623b73a31aee 0
+		MN1 149.28.232.213:11427 8mTdWPF8Pbc6aTS36W5koLYZWSo5Jby5UJZWCAjDMo7AJYbBwy5 726f3c137b1c567efdbe3bf0b0a061437a8ed52e515e709868d0623b73a31aee 0
 
 * Close and Re-open Local Wallet, and at Masternode Tab you will find your MN with status MISSING
 

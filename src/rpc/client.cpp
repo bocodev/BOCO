@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -62,12 +62,12 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"getbalance", 2},
         {"getbalance", 3},
         {"getblockhash", 0},
-        { "waitforblockheight", 0 },
-        { "waitforblockheight", 1 },
-        { "waitforblock", 1 },
-        { "waitforblock", 2 },
-        { "waitfornewblock", 0 },
-        { "waitfornewblock", 1 },
+        {"waitforblockheight", 0 },
+        {"waitforblockheight", 1 },
+        {"waitforblock", 1 },
+        {"waitforblock", 2 },
+        {"waitfornewblock", 0 },
+        {"waitfornewblock", 1 },
         {"move", 2},
         {"move", 3},
         {"sendfrom", 2},
@@ -129,13 +129,6 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"setban", 2},
         {"setban", 3},
         {"spork", 1},
-        {"preparebudget", 2},
-        {"preparebudget", 3},
-        {"preparebudget", 5},
-        {"submitbudget", 2},
-        {"submitbudget", 3},
-        {"submitbudget", 5},
-        {"submitbudget", 7},
         // disabled until removal of the legacy 'masternode' command
         //{"startmasternode", 1},
         {"mnvoteraw", 1},
@@ -143,28 +136,8 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"setstakesplitthreshold", 0},
         {"autocombinerewards", 0},
         {"autocombinerewards", 1},
-        {"getzerocoinbalance", 0},
-        {"listmintedzerocoins", 0},
-        {"listmintedzerocoins", 1},
-        {"listspentzerocoins", 0},
-        {"listzerocoinamounts", 0},
-        {"mintzerocoin", 0},
-        {"mintzerocoin", 1},
-        {"spendzerocoin", 0},
-        {"spendrawzerocoin", 2},
-        {"spendzerocoinmints", 0},
-        {"importzerocoins", 0},
-        {"exportzerocoins", 0},
-        {"exportzerocoins", 1},
-        {"resetmintzerocoin", 0},
-        {"getspentzerocoinamount", 1},
-        {"generatemintlist", 0},
-        {"generatemintlist", 1},
-        {"searchdzpiv", 0},
-        {"searchdzpiv", 1},
-        {"searchdzpiv", 2},
-        {"getmintsvalues", 2},
-        {"enableautomintaddress", 0},
+        {"setautocombinethreshold", 0},
+        {"setautocombinethreshold", 1},
         {"getblockindexstats", 0},
         {"getblockindexstats", 1},
         {"getblockindexstats", 2},
@@ -172,6 +145,7 @@ static const CRPCConvertParam vRPCConvertParams[] =
         {"getserials", 1},
         {"getserials", 2},
         {"getfeeinfo", 0},
+        {"getburnaddresses", 0},
     };
 
 class CRPCConvertTable

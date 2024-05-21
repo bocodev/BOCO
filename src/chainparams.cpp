@@ -160,18 +160,14 @@ public:
         consensus.powLimit   = ~UINT256_ZERO >> 20;   
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
-        consensus.nBudgetCycleBlocks = 30 * 24 * 60;       // approx. 1 every 30 days
-        consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
         consensus.nCoinbaseMaturity = 50;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
-        consensus.nMasternodeCountDrift = 20;       // num of MN we allow the see-saw payments to be off by
-        consensus.nMaxMoneyOut = 21000000 * COIN;
+        consensus.nMaxMoneyOut = 100000000 * COIN;
         consensus.nPoolMaxTransactions = 3;
-        consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nStakeMinAge = 60 * 60; // 1h
         consensus.nStakeMinDepth = 100;
-        consensus.nStakeMinDepthV2 = 600;
+        consensus.nStakeMinDepthV2 = 300;
         consensus.nTargetTimespan = 40 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
         consensus.nTargetSpacing = 1 * 60;
@@ -183,50 +179,29 @@ public:
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
-        // height-based activations
-        consensus.height_last_ZC_AccumCheckpoint    = DISABLED;
-        consensus.height_last_ZC_WrappedSerials     = DISABLED;
-        consensus.height_start_InvalidUTXOsCheck    = DISABLED;
-        consensus.height_start_ZC_InvalidSerials    = DISABLED;
-        consensus.height_start_ZC_SerialRangeCheck  = DISABLED;
-        consensus.height_ZC_RecalcAccumulators      = DISABLED;
-
-        // Zerocoin-related params
-        consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
-                "4069182906412495150821892985591491761845028084891200728449926873928072877767359714183472702618963750149718246911"
-                "6507761337985909570009733045974880842840179742910064245869181719511874612151517265463228221686998754918242243363"
-                "7259085141865462043576798423387184774447920739934236584823824281198163815010674810451660377306056201619676256133"
-                "8441436038339044149526344321901146575444541784240209246165157233507787077498171257724679629263863563732899121548"
-                "31438167899885040445364023527381951378636564391212010397122822120720357";
-        consensus.ZC_MaxPublicSpendsPerTx = 637;    // Assume about 220 bytes each input
-        consensus.ZC_MaxSpendsPerTx = 7;            // Assume about 20kb each input
-        consensus.ZC_MinMintConfirmations = 20;
-        consensus.ZC_MinMintFee = 1 * CENT;
-        consensus.ZC_MinStakeDepth = 200;
-        consensus.ZC_TimeStart = 1893456000;        // 01/01/2030 @ 12:00am (UTC)
-        consensus.ZC_WrappedSerialsSupply = 0; //4131563 * COIN;   // zerocoin supply at height_last_ZC_WrappedSerials
+        // burn addresses
+        consensus.mBurnAddresses = {
+           //{ "bXXXXXXXXXXXXXXXXXXXXXXXXXXXV9svHx", 0 }
+        };
 
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                   = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                    = 1001;
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                 = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                  = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                  = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight              = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight      = 1541;
         consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight       = 1641;
         consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight = 1741;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight     = 5001;
-        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 115000;
+        consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].nActivationHeight     = 43801;
 
-        consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock      = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("0x0");
+        consensus.vUpgrades[Consensus::UPGRADE_POS].hashActivationBlock                    = uint256S("0x57c9a4369a242dff1b7e0c348bbc4c75a9f23b1b9d74591de90abe6e53bffe4a");
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].hashActivationBlock                 = uint256S("0x5ff45a1d9b17b6836a41a528f7d3126b6639b2398d5298624ebd1b94b99479b7");
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock                  = uint256S("0x5ff45a1d9b17b6836a41a528f7d3126b6639b2398d5298624ebd1b94b99479b7");
+        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock      = uint256S("0x1cfb3d2c142f9406565d9b4ba6f9ceb30defb310045c6e6ce7843a1e292b22a3");
+        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock       = uint256S("0x8cb70db13eb0a45b511e223d080100d390a69ed0a4cb138a783bccb19b299b46");
+        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock = uint256S("0xd7837caae16830febe3d28be204a11332d69f96d3d40b829ab6a8dcad16732f4");
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock     = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_MASTERNODE_RANK_V2].hashActivationBlock     = uint256S("0x0");
 
@@ -290,15 +265,11 @@ public:
         consensus.powLimit   = ~UINT256_ZERO >> 20;   // boco starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
-        consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
-        consensus.nBudgetFeeConfirmations = 3;      // (only 8-blocks window for finalization on testnet)
         consensus.nCoinbaseMaturity = 15;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
-        consensus.nMasternodeCountDrift = 4;        // num of MN we allow the see-saw payments to be off by
         consensus.nMaxMoneyOut = 43199500 * COIN;
         consensus.nPoolMaxTransactions = 2;
-        consensus.nProposalEstablishmentTime = 60 * 5;  // at least 5 min old to make it into a budget
         consensus.nStakeMinAge = 60 * 60;
         consensus.nStakeMinDepth = 100;
         consensus.nStakeMinDepthV2 = 200;
@@ -313,51 +284,16 @@ public:
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
-        // height based activations
-        consensus.height_last_ZC_AccumCheckpoint    = 999999999;
-        consensus.height_last_ZC_WrappedSerials     = 999999999;
-        consensus.height_start_InvalidUTXOsCheck    = 999999999;
-        consensus.height_start_ZC_InvalidSerials    = 999999999;
-        consensus.height_start_ZC_SerialRangeCheck  = 999999999;
-        consensus.height_ZC_RecalcAccumulators      = 999999999;
-
-        // Zerocoin-related params
-        consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
-                "4069182906412495150821892985591491761845028084891200728449926873928072877767359714183472702618963750149718246911"
-                "6507761337985909570009733045974880842840179742910064245869181719511874612151517265463228221686998754918242243363"
-                "7259085141865462043576798423387184774447920739934236584823824281198163815010674810451660377306056201619676256133"
-                "8441436038339044149526344321901146575444541784240209246165157233507787077498171257724679629263863563732899121548"
-                "31438167899885040445364023527381951378636564391212010397122822120720357";
-        consensus.ZC_MaxPublicSpendsPerTx = 637;    // Assume about 220 bytes each input
-        consensus.ZC_MaxSpendsPerTx = 7;            // Assume about 20kb each input
-        consensus.ZC_MinMintConfirmations = 20;
-        consensus.ZC_MinMintFee = 1 * CENT;
-        consensus.ZC_MinStakeDepth = 200;
-        consensus.ZC_TimeStart = 1501776000;
-        consensus.ZC_WrappedSerialsSupply = 0;   // WrappedSerials only on main net
-
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight                  = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight                   = 1001;
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight                = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight                    = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight                 = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight                 = 1441;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight             = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight                  = 1541;
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight                  = 1641;
         consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].nActivationHeight              = 1741;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].nActivationHeight    = 1841;
-
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock                  = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].hashActivationBlock               = uint256S("0x0");
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].hashActivationBlock               = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].hashActivationBlock           = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].hashActivationBlock                = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_P2PKH_BLOCK_SIGNATURES].hashActivationBlock            = uint256S("0x0");
-        consensus.vUpgrades[Consensus::UPGRADE_STAKE_MIN_DEPTH_V2].hashActivationBlock  = uint256S("0x0");
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -369,7 +305,7 @@ public:
         pchMessageStart[1] = 0x6e;
         pchMessageStart[2] = 0x7e;
         pchMessageStart[3] = 0xfd;
-        nDefaultPort = __PORT_TESTNET__;
+        nDefaultPort = 31778;
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -416,15 +352,11 @@ public:
         consensus.powLimit   = ~UINT256_ZERO >> 20;   // boco starting difficulty is 1 / 2^12
         consensus.posLimitV1 = ~UINT256_ZERO >> 24;
         consensus.posLimitV2 = ~UINT256_ZERO >> 20;
-        consensus.nBudgetCycleBlocks = 144;         // approx 10 cycles per day
-        consensus.nBudgetFeeConfirmations = 3;      // (only 8-blocks window for finalization on regtest)
         consensus.nCoinbaseMaturity = 100;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
-        consensus.nMasternodeCountDrift = 4;        // num of MN we allow the see-saw payments to be off by
         consensus.nMaxMoneyOut = 43199500 * COIN;
         consensus.nPoolMaxTransactions = 2;
-        consensus.nProposalEstablishmentTime = 60 * 5;  // at least 5 min old to make it into a budget
         consensus.nStakeMinAge = 0;
         consensus.nStakeMinDepth = 2;
         consensus.nTargetTimespan = 40 * 60;
@@ -442,29 +374,6 @@ public:
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
-        // height based activations
-        consensus.height_last_ZC_AccumCheckpoint = 310;     // no checkpoints on regtest
-        consensus.height_last_ZC_WrappedSerials = -1;
-        consensus.height_start_InvalidUTXOsCheck = 999999999;
-        consensus.height_start_ZC_InvalidSerials = 999999999;
-        consensus.height_start_ZC_SerialRangeCheck = 300;
-        consensus.height_ZC_RecalcAccumulators = 999999999;
-
-        // Zerocoin-related params
-        consensus.ZC_Modulus = "25195908475657893494027183240048398571429282126204032027777137836043662020707595556264018525880784"
-                "4069182906412495150821892985591491761845028084891200728449926873928072877767359714183472702618963750149718246911"
-                "6507761337985909570009733045974880842840179742910064245869181719511874612151517265463228221686998754918242243363"
-                "7259085141865462043576798423387184774447920739934236584823824281198163815010674810451660377306056201619676256133"
-                "8441436038339044149526344321901146575444541784240209246165157233507787077498171257724679629263863563732899121548"
-                "31438167899885040445364023527381951378636564391212010397122822120720357";
-        consensus.ZC_MaxPublicSpendsPerTx = 637;    // Assume about 220 bytes each input
-        consensus.ZC_MaxSpendsPerTx = 7;            // Assume about 20kb each input
-        consensus.ZC_MinMintConfirmations = 10;
-        consensus.ZC_MinMintFee = 1 * CENT;
-        consensus.ZC_MinStakeDepth = 10;
-        consensus.ZC_TimeStart = 0;                 // not implemented on regtest
-        consensus.ZC_WrappedSerialsSupply = 0;
-
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight =
                 Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -472,11 +381,8 @@ public:
                 Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
         consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 251;
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = 251;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = 300;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = 300;
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         =
                 Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = 400;
         consensus.vUpgrades[Consensus::UPGRADE_STAKE_MODIFIER_V2].nActivationHeight          = 251;
         consensus.vUpgrades[Consensus::UPGRADE_TIME_PROTOCOL_V2].nActivationHeight          =
                 Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
@@ -492,7 +398,7 @@ public:
         pchMessageStart[1] = 0x29;
         pchMessageStart[2] = 0x1e;
         pchMessageStart[3] = 0x89;
-        nDefaultPort = __PORT_REGTEST__;
+        nDefaultPort = 41778;
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Testnet mode doesn't have any DNS seeds.

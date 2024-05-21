@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -126,6 +126,8 @@ void OptionsModel::setWalletDefaultOptions(QSettings& settings, bool reset)
         addOverriddenOption("-spendzeroconfchange");
     if (reset) {
         setStakeSplitThreshold(CWallet::DEFAULT_STAKE_SPLIT_THRESHOLD);
+        setAutoCombineThreshold(CWallet::DEFAULT_AUTO_COMBINE_THRESHOLD);
+        setCombineDust(CWallet::DEFAULT_COMBINE_DUST);
         setUseCustomFee(false);
         refreshDataView();
     }
@@ -265,6 +267,14 @@ QVariant OptionsModel::data(const QModelIndex& index, int role) const
             const CAmount nStakeSplitThreshold = (pwalletMain) ? pwalletMain->nStakeSplitThreshold : CWallet::DEFAULT_STAKE_SPLIT_THRESHOLD;
             return QVariant(static_cast<double>(nStakeSplitThreshold / static_cast<double>(COIN)));
         }
+        case CombineDust:
+            return (pwalletMain) ? pwalletMain->fCombineDust : CWallet::DEFAULT_COMBINE_DUST;
+        case AutoCombineThreshold:
+        {
+            // Return CAmount/qlonglong as double
+            const CAmount nAutoCombineThreshold = (pwalletMain) ? pwalletMain->nAutoCombineThreshold : CWallet::DEFAULT_AUTO_COMBINE_THRESHOLD;
+            return QVariant(static_cast<double>(nAutoCombineThreshold / static_cast<double>(COIN)));
+        }
         case fUseCustomFee:
             return QVariant((pwalletMain) ? pwalletMain->fUseCustomFee : false);
         case nCustomFee:
@@ -378,6 +388,14 @@ bool OptionsModel::setData(const QModelIndex& index, const QVariant& value, int 
             setStakeSplitThreshold(static_cast<CAmount>(value.toDouble() * COIN));
             setSSTChanged(true);
             break;
+        case CombineDust:
+            setCombineDust(value.toBool());
+            break;
+        case AutoCombineThreshold:
+            // Write double as qlonglong/CAmount
+            setAutoCombineThreshold(static_cast<CAmount>(value.toDouble() * COIN));
+            //setACTChanged(true);
+            break;
         case DisplayUnit:
             setDisplayUnit(value);
             break;
@@ -474,6 +492,34 @@ void OptionsModel::setStakeSplitThreshold(const CAmount nStakeSplitThreshold)
             pwalletMain->nStakeSplitThreshold = nStakeSplitThreshold;
             if (pwalletMain->fFileBacked)
                 walletdb.WriteStakeSplitThreshold(nStakeSplitThreshold);
+        }
+    }
+}
+
+/* Enable/disable AutoCombine in wallet */
+void OptionsModel::setCombineDust(bool fCombineDust)
+{
+    if (pwalletMain && pwalletMain->fCombineDust != fCombineDust) {
+        CWalletDB walletdb(pwalletMain->strWalletFile);
+        {
+            LOCK(pwalletMain->cs_wallet);
+            pwalletMain->fCombineDust = fCombineDust;
+            if (pwalletMain->fFileBacked)
+                walletdb.WriteAutoCombineSettings(fCombineDust, pwalletMain->nAutoCombineThreshold);
+        }
+    }
+}
+
+/* Update AutoCombineThreshold value in wallet */
+void OptionsModel::setAutoCombineThreshold(const CAmount nAutoCombineThreshold)
+{
+    if (pwalletMain && pwalletMain->nAutoCombineThreshold != nAutoCombineThreshold) {
+        CWalletDB walletdb(pwalletMain->strWalletFile);
+        LOCK(pwalletMain->cs_wallet);
+        {
+            pwalletMain->nAutoCombineThreshold = nAutoCombineThreshold;
+            if (pwalletMain->fFileBacked)
+                walletdb.WriteAutoCombineSettings(pwalletMain->fCombineDust, nAutoCombineThreshold);
         }
     }
 }

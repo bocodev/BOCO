@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,10 +46,6 @@ public:
         ThreadsScriptVerif,  // int
         DatabaseCache,       // int
         SpendZeroConfChange, // bool
-        ZeromintEnable,      // bool
-        ZeromintAddresses,   // bool
-        ZeromintPercentage,  // int
-        ZeromintPrefDenom,   // int
         HideCharts,          // bool
         HideZeroBalances,    // bool
         HideOrphans,    // bool
@@ -57,6 +53,8 @@ public:
         ShowMasternodesTab,  // bool
         Listen,              // bool
         StakeSplitThreshold,    // CAmount (LongLong)
+        CombineDust,            // bool
+        AutoCombineThreshold,   // CAmount (LongLong)
         fUseCustomFee,          // bool
         nCustomFee,             // CAmount (LongLong)
         OptionIDRowCount,
@@ -73,6 +71,8 @@ public:
     void setDisplayUnit(const QVariant& value);
     /* Update StakeSplitThreshold's value in wallet */
     void setStakeSplitThreshold(const CAmount value);
+    void setCombineDust(bool fCombineDust);
+    void setAutoCombineThreshold(const CAmount nAutoCombineThreshold);
     double getSSTMinimum() const;
     bool isSSTValid();
     /* Update Custom Fee value in wallet */

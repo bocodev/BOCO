@@ -326,7 +326,7 @@
         <property name="frameShadow">
          <enum>QFrame::Raised</enum>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,8,0">
+        <layout class="QVBoxLayout" name="verticalLayout_7" stretch="1,8,0,0">
          <property name="spacing">
           <number>0</number>
          </property>
@@ -442,6 +442,22 @@
            </property>
           </spacer>
          </item>
+         <item alignment="Qt::AlignHCenter">
+          <widget class="QPushButton" name="btnHowTo">
+           <property name="minimumSize">
+            <size>
+             <width>280</width>
+             <height>50</height>
+            </size>
+           </property>
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="text">
+            <string>How to get BOCO</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
@@ -544,31 +560,31 @@
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0">
-          <property name="spacing">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QLabel" name="labelAmountPiv">
-            <property name="text">
-             <string notr="true">0 BOCO</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="labelAmountMNRewards">
-            <property name="text">
-             <string>TextLabel</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
+            <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0">
+                <property name="spacing">
+                    <number>0</number>
+                </property>
+                <item>
+                    <widget class="PrivateQLabel" name="labelAmountPiv">
+                        <property name="text">
+                            <string notr="true">0 BOCO</string>
+                        </property>
+                        <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                        </property>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="PrivateQLabel" name="labelAmountMNRewards">
+                        <property name="text">
+                            <string>TextLabel</string>
+                        </property>
+                        <property name="alignment">
+                            <set>Qt::AlignCenter</set>
+                        </property>
+                    </widget>
+                </item>
+            </layout>
         </item>
         <item>
          <spacer name="verticalSpacer_6">
@@ -639,7 +655,7 @@
                 <item>
                  <widget class="QLabel" name="labelChart">
                   <property name="text">
-                   <string/>
+                   <string>Staking statistics</string>
                   </property>
                  </widget>
                 </item>
@@ -678,7 +694,7 @@
                 <item>
                  <widget class="QLabel" name="labelPiv">
                   <property name="text">
-                   <string notr="true">STAKING</string>
+                   <string notr="true">BOCO</string>
                   </property>
                  </widget>
                 </item>
@@ -699,43 +715,30 @@
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelSquareMNRewards">
-                  <property name="minimumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>14</width>
-                    <height>14</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                 </widget>
+                    <widget class="QLabel" name="labelSquareMNRewards">
+                        <property name="minimumSize">
+                            <size>
+                                <width>14</width>
+                                <height>14</height>
+                            </size>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>14</width>
+                                <height>14</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string/>
+                        </property>
+                    </widget>
                 </item>
                 <item>
-                 <widget class="QLabel" name="labelMNRewards">
-                  <property name="text">
-                   <string>MASTERNODES</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_6">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
+                    <widget class="QLabel" name="labelMNRewards">
+                        <property name="text">
+                            <string>BOCO MN</string>
+                        </property>
+                    </widget>
                 </item>
                </layout>
               </item>
@@ -1362,6 +1365,14 @@ It will start automatically as soon as the wallet has enough confirmations on an
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PrivateQLabel</class>
+   <extends>QLabel</extends>
+   <header>qt/pivx/privatelabel.h</header>
+   <container>0</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

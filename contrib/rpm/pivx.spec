@@ -244,6 +244,8 @@ done
 %if %{_buildqt}
 # qt icons
 install -D -p share/pixmaps/boco.ico %{buildroot}%{_datadir}/pixmaps/boco.ico
+install -p share/pixmaps/nsis-header.bmp %{buildroot}%{_datadir}/pixmaps/
+install -p share/pixmaps/nsis-wizard.bmp %{buildroot}%{_datadir}/pixmaps/
 install -p %{SOURCE100} %{buildroot}%{_datadir}/pixmaps/pivx.svg
 %{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/boco16.png -w16 -h16
 %{_bindir}/inkscape %{SOURCE100} --export-png=%{buildroot}%{_datadir}/pixmaps/boco32.png -w32 -h32

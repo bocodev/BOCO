@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -80,7 +80,6 @@ private:
     size_t nModSize;      //! ... and modified size for priority
     size_t nUsageSize;    //! ... and total memory usage
     CFeeRate feeRate;     //! ... and fee per kB
-    bool hasZerocoins{false}; //! ... and checking if it contains zBOCO (mints/spends)
     int64_t nTime;        //! Local time when entering the mempool
     double entryPriority;     //! Priority when entering the mempool
     unsigned int entryHeight; //! Chain height when entering the mempool
@@ -116,7 +115,6 @@ public:
     size_t GetTxSize() const { return nTxSize; }
     int64_t GetTime() const { return nTime; }
     unsigned int GetHeight() const { return entryHeight; }
-    bool HasZerocoins() const { return hasZerocoins; }
     bool WasClearAtEntry() const { return hadNoDependencies; }
     unsigned int GetSigOpCount() const { return sigOpCount; }
     int64_t GetModifiedFee() const { return nFee + feeDelta; }

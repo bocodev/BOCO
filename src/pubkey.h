@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2018 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -206,6 +206,16 @@ public:
         return std::vector<unsigned char>(vch, vch + size());
     }
 
+};
+
+struct CPubKeyCheapHasher {
+    int operator()(const CPubKey& pubKey) const {
+        int hash = pubKey.size();
+        for(auto &i : pubKey.Raw()) {
+            hash ^= i + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+        }
+        return hash;
+    }
 };
 
 struct CExtPubKey {

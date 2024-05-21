@@ -704,8 +704,8 @@ do stakingu</translation>
         <translation>Filtruj według</translation>
     </message>
     <message>
-        <source>Amount of BOCO and zBOCO staked.</source>
-        <translation>Ilość BOCO i zBOCO staked.</translation>
+        <source>Amount of BOCO staked.</source>
+        <translation>Ilość BOCO staked.</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1493,45 +1493,17 @@ Jesteś pewny?</translation>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/ARRRgQzpdZ</source>
+        https://discord.gg/Rhhk6cjVgH</source>
         <translation>Brakuje języka bądź nieukończona pełnego tłumaczenia? Pomóż w tłumaczeniu tutaj:
-        https://discord.gg/ARRRgQzpdZ</translation>
+        https://discord.gg/Rhhk6cjVgH</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Mapuj port za pomocą &amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BOCO units to zBOCO</source>
-        <translation>Włącz automatyczny minting BOCO do zBOCO</translation>
-    </message>
-    <message>
-        <source>Enable zBOCO Automint</source>
-        <translation>Włącz zBOCO Automint</translation>
-    </message>
-    <message>
-        <source>Enable automatic zBOCO minting from specific addresses</source>
-        <translation>Włącz automatyczne wybijanie zBOCO-ów z określonych adresów</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>Włącz adresy Automint</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BOCO which get automatically converted to zBOCO via Zerocoin Protocol (min: 10%)</source>
-        <translation>Procent BOCO, które są automatycznie konwertowane na zBOCO za pomocą protokołu Zerocoin (min: 10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBOCO</source>
-        <translation>Procent automint zBOCO</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BOCO for this denomination is available</source>
-        <translation>Zaczekaj z automatyczną konwersją na Zerocoin, aż będzie dostępna wystarczająca wartość BOCO dla tego nominału</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBOCO Denomination</source>
-        <translation>Preferowane nominały Automint zBOCO</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2239,10 +2211,6 @@ Adres: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>Standardowa ścieżka kopii zapasowej:</translation>
-    </message>
-    <message>
-        <source>Custom zBOCO Backup Path:</source>
-        <translation>standardowa ścieżka kopii zapasowej zBOCO:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -4105,7 +4073,7 @@ Jesteś pewny?
         <translation>Staking aktywny</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>Staking nieaktywny</translation>
     </message>
     <message>
@@ -4471,20 +4439,22 @@ kopia zapasowa zostanie utworzona.
         <translation>Wybierz swój język</translation>
     </message>
     <message>
-        <source>Boco Beyond</source>
-        <translation>Boco Beyond</translation>
+        <source>Welcome to
+Boco Wallet</source>
+        <translation>Witamy
+Portfel Boco</translation>
     </message>
     <message>
-        <source>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</source>
-        <translation>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</translation>
+        <source>BOCO is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BOCO to najbardziej innowacyjna na świecie technologia oparta na blockchain Proof of Stake. Opracowany przez zespół wysoce doświadczonych programistów i kryptografów.</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>The masternode network is BOCO's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>Sieć masternode jest siecią drugiej warstwy BOCO na szczycie blockchain, która umożliwia naszemu DAO zapewnienie zdecentralizowanego zarządzania i skarbca.</translation>
     </message>
     <message>
-        <source>Be inspired by community</source>
-        <translation>Be inspired by community</translation>
+        <source>How BOCO respects your privacy?</source>
+        <translation>Jak BOCO szanuje twoją prywatność?</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4522,10 +4492,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Nie można uzyskać dostępu do katalogu danych %s. Boco prawdopodobnie już działa.</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>Zmień zachowanie automatycznego głosowania w budżecie finalizowanym. mode=auto: Głosuj tylko na dokładne sfinalizowane dopasowanie budżetu do mojego wygenerowanego budżetu. (ciąg, domyślny: auto)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>Limit bezpłatnych transakcji do &lt;n&gt;* 1000 bajtów na minutę (domyślnie:%u)</translation>
     </message>
@@ -4536,10 +4502,6 @@ kopia zapasowa zostanie utworzona.
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>Usuń wszystkie transakcje portfela i odzyskaj tylko część łańcucha blokowego -reskan przy uruchomieniu</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>Usuń wszystkie wydane zerocoin i mint, które zostały zapisane w bazie danych blockchain i ponownie je zindeksuj (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -4834,10 +4796,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Błąd odczytu z bazy danych, wyłączenie.</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>Błąd podczas zapisywania zerocoinDB na dysku</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
@@ -4938,14 +4896,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Przeliczanie podaży BOCO ...</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>Ponowne indeksowanie bazy danych zerocoin ...</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>Ponowne indeksowanie zerocoin nie powiodło się</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>Wybrana wartość monet jest mniejsza niż docelowa</translation>
     </message>
@@ -4954,12 +4904,8 @@ kopia zapasowa zostanie utworzona.
         <translation>Jest to wersja testowa pre-release - korzystaj z niej na własne ryzyko - nie używaj do staking lub prawdziwych transakcji!</translation>
     </message>
     <message>
-        <source>Disable all BOCO specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>Wyłącz wszystkie funkcje specyficzne dla BOCO (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, domyślnie: %u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>Włącz SwiftX, pokaż potwierdzenia zablokowanych transakcji (bool, domyślnie: %s)</translation>
+        <source>Disable all BOCO specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>Wyłącz wszystkie funkcje specyficzne dla BOCO (Masternodes) (0-1, domyślnie: %u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5034,14 +4980,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Nie udało się przeanalizować wydatków publicznych</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>Nie udało się wybrać zerocoin</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>Nie można wyczyścić zerocoinDB</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>Nie udało się zapisać numeru seryjnego monety w portfelu</translation>
     </message>
@@ -5076,10 +5014,6 @@ kopia zapasowa zostanie utworzona.
     <message>
         <source>Loading block index...</source>
         <translation>Ładowanie indeksu bloków ...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>Ładowanie cache budżetu ...</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5362,10 +5296,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Synchronizacja zakończona</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>Synchronizowanie budżetów ...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>Synchronizowanie masternode winners...</translation>
     </message>
@@ -5376,10 +5306,6 @@ kopia zapasowa zostanie utworzona.
     <message>
         <source>Synchronizing sporks...</source>
         <translation>Synchronizowanie sporks...</translation>
-    </message>
-    <message>
-        <source>Syncing zBOCO wallet...</source>
-        <translation>Synchronizuję portfel zBOCO ...</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5482,10 +5408,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Nazwa użytkownika dla połączeń JSON-RPC</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBOCO</source>
-        <translation>Wartość jest mniejsza od najmniejszej dostępnej (= 1) zBOCO</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>Weryfikuję bloki ...</translation>
     </message>
@@ -5526,10 +5448,6 @@ kopia zapasowa zostanie utworzona.
         <translation>Ostrzeżenie: Zignorowany nieobsługiwany argument -debugnet, użyj -debug=net.</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>Nie masz wystarczającej liczby Zerocoins w swoim portfelu</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>Musisz przebudować bazę danych za pomocą -reindex, aby zmienić -txindeks</translation>
     </message>
@@ -5540,14 +5458,6 @@ kopia zapasowa zostanie utworzona.
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>Opcje powiadomień ZeroMQ:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>Zerocoin minting dostępne tylko podczas testu regtest</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>Opcje Zerocoin:</translation>
     </message>
     <message>
         <source>on startup</source>

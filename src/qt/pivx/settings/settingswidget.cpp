@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -137,7 +137,7 @@ SettingsWidget::SettingsWidget(PIVXGUI* parent) :
 
     // Help
     connect(ui->pushButtonHelp, &QPushButton::clicked, this, &SettingsWidget::onHelpClicked);
-//    connect(ui->pushButtonHelp1, &QPushButton::clicked, window, &PIVXGUI::openFAQ);
+    connect(ui->pushButtonHelp1, &QPushButton::clicked, window, &PIVXGUI::openFAQ);
     connect(ui->pushButtonHelp2, &QPushButton::clicked, this, &SettingsWidget::onAboutClicked);
 
     // Get restart command-line parameters and handle restart
@@ -166,6 +166,7 @@ SettingsWidget::SettingsWidget(PIVXGUI* parent) :
     connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::saveSettings, this, &SettingsWidget::onSaveOptionsClicked);
     connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::discardSettings, this, &SettingsWidget::onDiscardChanges);
 
+    connect(settingsConsoleWidget, &SettingsConsoleWidget::message,this, &SettingsWidget::message);
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
     mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
@@ -253,6 +254,8 @@ void SettingsWidget::onSaveOptionsClicked()
                 args.removeAll(ZAPTXES2);
                 args.removeAll(UPGRADEWALLET);
                 args.removeAll(REINDEX);
+                args.removeAll(RESYNC);
+                args.removeAll(REWIND);
 
                 Q_EMIT handleRestart(args);
             } else {

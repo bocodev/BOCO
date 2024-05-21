@@ -10,8 +10,8 @@
 #define BITCOIN_CHAINPARAMS_H
 
 #define __PORT_MAINNET__ 21778
-#define __PORT_TESTNET__ 21427
-#define __PORT_REGTEST__ 31427
+#define __PORT_TESTNET__ 31778
+#define __PORT_REGTEST__ 41778
 
 #include "chainparamsbase.h"
 #include "checkpoints.h"
@@ -21,6 +21,7 @@
 #include "uint256.h"
 
 #include <vector>
+#include <map>
 
 struct CDNSSeedData {
     std::string name, host;

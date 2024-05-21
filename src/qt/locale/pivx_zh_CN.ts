@@ -703,8 +703,8 @@ for staking</source>
         <translation>过滤</translation>
     </message>
     <message>
-        <source>Amount of BOCO and zBOCO staked.</source>
-        <translation>已加注的BOCO 和 zBOCO 金额</translation>
+        <source>Amount of BOCO staked.</source>
+        <translation>已加注的BOCO 金额</translation>
     </message>
     <message>
         <source>Please wait until the wallet is fully synced to see your correct balance</source>
@@ -1497,45 +1497,17 @@ Are you sure?</source>
     </message>
     <message>
         <source>Language missing or translation incomplete? Help contributing translations here:
-        https://discord.gg/ARRRgQzpdZ</source>
+        https://discord.gg/Rhhk6cjVgH</source>
         <translation>语言缺失或翻译不完整?帮助贡献翻译在这里:
-        https://discord.gg/ARRRgQzpdZ</translation>
+        https://discord.gg/Rhhk6cjVgH</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>端口使用&amp;UPnP</translation>
     </message>
     <message>
-        <source>Enable automatic minting of BOCO units to zBOCO</source>
-        <translation>启动自动铸造BOCO到zBOCO</translation>
-    </message>
-    <message>
-        <source>Enable zBOCO Automint</source>
-        <translation>启动自动铸造zBOCO</translation>
-    </message>
-    <message>
-        <source>Enable automatic zBOCO minting from specific addresses</source>
-        <translation>启用从特定地址自动生成zBOCO</translation>
-    </message>
-    <message>
         <source>Enable Automint Addresses</source>
         <translation>启动自动铸造地址</translation>
-    </message>
-    <message>
-        <source>Percentage of incoming BOCO which get automatically converted to zBOCO via Zerocoin Protocol (min: 10%)</source>
-        <translation>通过零币协议自动转换为zBOCO的传入BOCO的百分比(最小:10%)</translation>
-    </message>
-    <message>
-        <source>Percentage of autominted zBOCO</source>
-        <translation>自动铸造的zBOCO百分比</translation>
-    </message>
-    <message>
-        <source>Wait with automatic conversion to Zerocoin until enough BOCO for this denomination is available</source>
-        <translation>等待自动转换为零币，直到足够的BOCO为这种面额可用</translation>
-    </message>
-    <message>
-        <source>Preferred Automint zBOCO Denomination</source>
-        <translation>首选自动铸造zBOCO面额</translation>
     </message>
     <message>
         <source>Stake split threshold:</source>
@@ -2243,10 +2215,6 @@ Address: %4
     <message>
         <source>Custom Backup Path:</source>
         <translation>自定义备份路径:</translation>
-    </message>
-    <message>
-        <source>Custom zBOCO Backup Path:</source>
-        <translation>自定义zBOCO备份路径:</translation>
     </message>
     <message>
         <source>Custom Backups Threshold:</source>
@@ -3254,27 +3222,25 @@ There was an error trying to save the address list to %1. Please try again.</sou
                            BOCO is a form of digital online money using blockchain technology
                            that can be easily transferred globally, instantly, and with near
                            zero fees.  BOCO incorporates market leading security &amp;
-                           privacy and is also the first PoS (Proof of Stake) Cryptocurrency
-                           to implement ZeroCoin(zBOCO) and Zerocoin staking.
+                           privacy.
                            &lt;/p&gt;&lt;p align="justify"&gt;
                            BOCO utilizes a Proof of Stake (PoS) consensus system algorithm,
                            allowing all owners of BOCO to participate in earning block rewards
                            while securing the network with full node wallets, as well as to
-                           run Masternodes to create and vote on proposals.
+                           run Masternodes to earn additional income regularly.
                            &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;
                          </source>
         <translation>
 &lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align="justify"&gt;
-BOCO是一种使用区块链技术的数字在线货币
-全球范围内快捷交易，即时，基本为
-零的交易费用。BOCO是市场上领先的安全和
-隐私加密货币，也是第一个PoS(股权证明)加密货币
-实现零币(zBOCO)和零币加注。
+BOCO is a form of digital online money using blockchain technology
+that can be easily transferred globally, instantly, and with near
+zero fees.  BOCO incorporates market leading security &amp;
+privacy.
 &lt;/p&gt;&lt;p align="justify"&gt;
-BOCO使用了一个股权证明(PoS)一致系统算法，
-允许所有BOCO的所有者参与赚取区块奖励
-同时保护网络与完整的节点钱包，以及
-运行主节点创建和投票来进行提案。</translation>
+BOCO utilizes a Proof of Stake (PoS) consensus system algorithm,
+allowing all owners of BOCO to participate in earning block rewards
+while securing the network with full node wallets, as well as to
+run Masternodes to create and vote on proposals</translation>
     </message>
     <message>
         <source>2</source>
@@ -3346,8 +3312,6 @@ BOCO使用了一个股权证明(PoS)一致系统算法，
                            &lt;/p&gt;&lt;p align="justify"&gt;
 
                            &lt;ul&gt;
-                           &lt;li&gt;A decentralized governance (Proposal Voting)&lt;/li&gt;
-                           &lt;li&gt;A decentralized budgeting system (Treasury)&lt;/li&gt;
                            &lt;li&gt;Validation of transactions within each block&lt;/li&gt;
                            &lt;li&gt;Act as an additional full node in the network&lt;/li&gt;
                            &lt;/ul&gt;
@@ -3388,8 +3352,6 @@ BOCO使用了一个股权证明(PoS)一致系统算法，
 &lt;/p&gt;&lt;p align="justify"&gt;
 
 &lt;ul&gt;
-&lt;li&gt;去中心化治理(提案投票)&lt;/li&gt;
-&lt;li&gt;去中心化预算系统(国库)&lt;/li&gt;
 &lt;li&gt;验证每个区块交易&lt;/li&gt;
 &lt;li&gt;充当网络中的另一个完整节点&lt;/li&gt;
 &lt;/ul&gt;
@@ -4234,7 +4196,7 @@ Are you sure?
         <translation>加注激活</translation>
     </message>
     <message>
-        <source>Staking not active</source>
+        <source>Staking inactive</source>
         <translation>加注没激活</translation>
     </message>
     <message>
@@ -4600,24 +4562,26 @@ backup will be created.
         <translation>选择语言</translation>
     </message>
     <message>
-        <source>Boco Beyond</source>
-        <translation>Boco Beyond</translation>
+        <source>Welcome to
+Boco Wallet</source>
+        <translation>欢迎
+Boco心钱包</translation>
     </message>
     <message>
-        <source>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</source>
-        <translation>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</translation>
+        <source>BOCO is the world’s most innovative Proof of Stake blockchain based technology. Developed by a team of highly experienced developers and cryptographers.</source>
+        <translation>BOCO是世界上最先进的隐私保护技术，由经验丰富的开发人员和密码专家开发。</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BOCO believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;正如我们的宣言所说:隐私是一项不容协商的基本人权;它赋予用户随时随地与任何人共享数据的自由——BOCO相信自我主权&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</source>
-        <translation>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</translation>
+        <source>The masternode network is BOCO's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</source>
+        <translation>主节点网络是BOCO在区块链之上的第二层网络，它使我们的DAO能够提供去中心的治理。</translation>
     </message>
     <message>
-        <source>Be inspired by community</source>
-        <translation>Be inspired by community</translation>
+        <source>How BOCO respects your privacy?</source>
+        <translation>BOCO 到底是怎么尊重你的隐私的？</translation>
     </message>
     <message>
         <source>What is a Masternode?</source>
@@ -4655,10 +4619,6 @@ backup will be created.
         <translation>无法获取数据目录%s锁。Boco心可能已经在运行了。</translation>
     </message>
     <message>
-        <source>Change automatic finalized budget voting behavior. mode=auto: Vote for only exact finalized budget match to my generated budget. (string, default: auto)</source>
-        <translation>改变自动完成的预算投票行为。模式=自动:只对与生成的预算完全匹配的最终预算进行投票。(字符串,默认:汽车)</translation>
-    </message>
-    <message>
         <source>Continuously rate-limit free transactions to &lt;n&gt;*1000 bytes per minute (default:%u)</source>
         <translation>连续速率限制免费交易可达&lt;n&gt;每分钟*1000字节(默认:%u)</translation>
     </message>
@@ -4669,10 +4629,6 @@ backup will be created.
     <message>
         <source>Delete all wallet transactions and only recover those parts of the blockchain through -rescan on startup</source>
         <translation>删除所有钱包交易，只恢复那些部分的区块链-通过启动时进行重新扫描</translation>
-    </message>
-    <message>
-        <source>Delete all zerocoin spends and mints that have been recorded to the blockchain database and reindex them (0-1, default: %u)</source>
-        <translation>删除所有已记录到区块链数据库的零币花费和铸造，并重新索引它们(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file COPYING or &lt;http://www.opensource.org/licenses/mit-license.php&gt;.</source>
@@ -4967,10 +4923,6 @@ backup will be created.
         <translation>数据库读取出错，正在关闭。</translation>
     </message>
     <message>
-        <source>Error writing zerocoinDB to disk</source>
-        <translation>零币编码写入磁盘出错</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>出错</translation>
     </message>
@@ -5071,14 +5023,6 @@ backup will be created.
         <translation>重新计算BOCO供应量……</translation>
     </message>
     <message>
-        <source>Reindexing zerocoin database...</source>
-        <translation>重新索引零币数据库。</translation>
-    </message>
-    <message>
-        <source>Reindexing zerocoin failed</source>
-        <translation>重建索引零币失败</translation>
-    </message>
-    <message>
         <source>Selected coins value is less than payment target</source>
         <translation>所选择币价值低于支付目标金额</translation>
     </message>
@@ -5087,12 +5031,8 @@ backup will be created.
         <translation>这是一个预发行测试版本 - 您自己承担风险 - 不要用于商业应用！</translation>
     </message>
     <message>
-        <source>Disable all BOCO specific functionality (Masternodes, Zerocoin, SwiftX, Budgeting) (0-1, default: %u)</source>
-        <translation>禁用所有BOCO特定功能(主节点, 零币, SwiftX, budget)(0-1，默认值:%u)</translation>
-    </message>
-    <message>
-        <source>Enable SwiftX, show confirmations for locked transactions (bool, default: %s)</source>
-        <translation>启用SwiftX，显示锁定交易的确认(bool，默认值:%s)</translation>
+        <source>Disable all BOCO specific functionality (Masternodes) (0-1, default: %u)</source>
+        <translation>禁用所有BOCO特定功能(主节点)(0-1，默认值:%u)</translation>
     </message>
     <message>
         <source>Error: Unsupported argument -checklevel found. Checklevel must be level 4.</source>
@@ -5167,14 +5107,6 @@ backup will be created.
         <translation>解析公共花费失败</translation>
     </message>
     <message>
-        <source>Failed to select a zerocoin</source>
-        <translation>选择零币失败</translation>
-    </message>
-    <message>
-        <source>Failed to wipe zerocoinDB</source>
-        <translation>擦写零币DB失败</translation>
-    </message>
-    <message>
         <source>Failed to write coin serial number into wallet</source>
         <translation>硬币序列号写入钱包失败</translation>
     </message>
@@ -5209,10 +5141,6 @@ backup will be created.
     <message>
         <source>Loading block index...</source>
         <translation>正在下载区块索引...</translation>
-    </message>
-    <message>
-        <source>Loading budget cache...</source>
-        <translation>正在下载加载预算…</translation>
     </message>
     <message>
         <source>Loading masternode cache...</source>
@@ -5495,10 +5423,6 @@ backup will be created.
         <translation>同步已完成</translation>
     </message>
     <message>
-        <source>Synchronizing budgets...</source>
-        <translation>正在同步预算...</translation>
-    </message>
-    <message>
         <source>Synchronizing masternode winners...</source>
         <translation>正在同步主节点赢家...</translation>
     </message>
@@ -5509,10 +5433,6 @@ backup will be created.
     <message>
         <source>Synchronizing sporks...</source>
         <translation>正在同步分叉...</translation>
-    </message>
-    <message>
-        <source>Syncing zBOCO wallet...</source>
-        <translation>正在同步zBOCO钱包……</translation>
     </message>
     <message>
         <source>This help message</source>
@@ -5615,10 +5535,6 @@ backup will be created.
         <translation>JSON-RPC连接的用户名</translation>
     </message>
     <message>
-        <source>Value is below the smallest available denomination (= 1) of zBOCO</source>
-        <translation>值小于zBOCO的最小可用面额(= 1)</translation>
-    </message>
-    <message>
         <source>Verifying blocks...</source>
         <translation>正在验证区块……</translation>
     </message>
@@ -5659,10 +5575,6 @@ backup will be created.
         <translation>警告:不支持的参数-debugnet被忽略，使用-debug=net。</translation>
     </message>
     <message>
-        <source>You don't have enough Zerocoins in your wallet</source>
-        <translation>你的钱包里没有足够的零币</translation>
-    </message>
-    <message>
         <source>You need to rebuild the database using -reindex to change -txindex</source>
         <translation>您需要使用-reindex来更改-txindex来重新构建数据库</translation>
     </message>
@@ -5673,14 +5585,6 @@ backup will be created.
     <message>
         <source>ZeroMQ notification options:</source>
         <translation>ZeroMQ通知选项:</translation>
-    </message>
-    <message>
-        <source>Zerocoin minting available only on regtest</source>
-        <translation>零币铸造只能在regtest可用</translation>
-    </message>
-    <message>
-        <source>Zerocoin options:</source>
-        <translation>零币选项：</translation>
     </message>
     <message>
         <source>on startup</source>

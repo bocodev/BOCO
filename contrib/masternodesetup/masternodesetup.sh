@@ -6,7 +6,7 @@ CONFIGFOLDER='/root/.boco'
 COIN_DAEMON='bocod'
 COIN_CLI='boco-cli'
 COIN_PATH='/usr/local/bin/'
-COIN_TGZ=`curl -s https://api.github.com/repos/BocoBF/Boco/releases/latest | grep "browser_download_url.*Linux\\.tar.gz" | cut -d : -f 2,3 | tr -d \" | xargs`
+COIN_TGZ=`curl -s https://api.github.com/repos/bocodev/BOCO/releases/latest | grep "browser_download_url.*linux\\.zip" | cut -d : -f 2,3 | tr -d \" | xargs`
 COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='boco'
 COIN_PORT=21778
@@ -51,7 +51,7 @@ function download_node() {
   echo -e "${GREEN}Downloading and Installing VPS $COIN_NAME Daemon${NC}"
   cd $TMP_FOLDER >/dev/null 2>&1
   wget -q $COIN_TGZ
-  tar -xvf $COIN_ZIP
+  unzip -xvf $COIN_ZIP
   cd rev >/dev/null 2>&1
   chmod +x $COIN_DAEMON $COIN_CLI
   cp $COIN_DAEMON $COIN_CLI $COIN_PATH
@@ -145,7 +145,6 @@ function update_config() {
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 logintimestamps=1
 maxconnections=256
-bind=127.0.0.1
 masternode=1
 externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
@@ -224,25 +223,20 @@ apt-get update >/dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt-get update > /dev/null 2>&1
 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" -y -qq upgrade >/dev/null 2>&1
 apt install -y software-properties-common >/dev/null 2>&1
-echo -e "${PURPLE}Adding bitcoin PPA repository"
-apt-add-repository -y ppa:bitcoin/bitcoin >/dev/null 2>&1
 echo -e "Installing required packages, it may take some time to finish.${NC}"
 apt-get update >/dev/null 2>&1
 apt-get install libzmq3-dev -y >/dev/null 2>&1
 apt-get install -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" make software-properties-common \
-build-essential libtool autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev libboost-program-options-dev \
-libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git wget curl libdb4.8-dev bsdmainutils libdb4.8++-dev \
-libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev  libdb5.3++ unzip libzmq5 >/dev/null 2>&1
+build-essential libtool autoconf libssl-dev \
+sudo automake git wget curl bsdmainutils net-tools \
+libminiupnpc-dev libgmp3-dev ufw pkg-config unzip >/dev/null 2>&1
 if [ "$?" -gt "0" ];
   then
     echo -e "${RED}Not all required packages were installed properly. Try to install them manually by running the following commands:${NC}\n"
     echo "apt-get update"
     echo "apt -y install software-properties-common"
-    echo "apt-add-repository -y ppa:bitcoin/bitcoin"
     echo "apt-get update"
-    echo "apt install -y make build-essential libtool software-properties-common autoconf libssl-dev libboost-dev libboost-chrono-dev libboost-filesystem-dev \
-libboost-program-options-dev libboost-system-dev libboost-test-dev libboost-thread-dev sudo automake git curl libdb4.8-dev \
-bsdmainutils libdb4.8++-dev libminiupnpc-dev libgmp3-dev ufw pkg-config libevent-dev libdb5.3++ unzip libzmq5"
+    echo "apt install -y make software-properties-common build-essential libtool autoconf libssl-dev sudo automake git wget curl bsdmainutils net-tools libminiupnpc-dev libgmp3-dev ufw pkg-config unzip"
  exit 1
 fi
 clear

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2013 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +12,8 @@
 #include <cstdlib>
 
 #include <QDateTime>
+
+#define SKIP_ROWCOUNT_N_TIMES 10
 
 // Earliest date that can be represented (far in the past)
 const QDateTime TransactionFilterProxy::MIN_DATE = QDateTime::fromTime_t(0);
@@ -61,9 +63,6 @@ bool TransactionFilterProxy::filterAcceptsRow(int sourceRow, const QModelIndex& 
     }
     if (amount < minAmount)
         return false;
-    if (fOnlyZc && !isZcTx(type)){
-        return false;
-    }
     if (fOnlyStakesandMN && !isStakeTx(type) && !isMasternodeRewardTx(type))
         return false;
 
@@ -120,12 +119,6 @@ void TransactionFilterProxy::setHideOrphans(bool fHide)
     invalidateFilter();
 }
 
-void TransactionFilterProxy::setShowZcTxes(bool fOnlyZc)
-{
-    this->fOnlyZc = fOnlyZc;
-    invalidateFilter();
-}
-
 void TransactionFilterProxy::setOnlyStakesandMN(bool fOnlyStakesandMN)
 {
     this->fOnlyStakesandMN = fOnlyStakesandMN;
@@ -134,23 +127,24 @@ void TransactionFilterProxy::setOnlyStakesandMN(bool fOnlyStakesandMN)
 
 int TransactionFilterProxy::rowCount(const QModelIndex& parent) const
 {
+    static int entryCount = 0;
+
+    int rowCount = 
+        entryCount++ < SKIP_ROWCOUNT_N_TIMES ?
+        sourceModel()->rowCount() :
+        QSortFilterProxyModel::rowCount(parent);
+
     if (limitRows != -1) {
-        return std::min(QSortFilterProxyModel::rowCount(parent), limitRows);
+        return std::min(rowCount, limitRows);
     } else {
-        return QSortFilterProxyModel::rowCount(parent);
+        return rowCount;
     }
 }
 
 bool TransactionFilterProxy::isOrphan(const int status, const int type)
 {
-    return ( (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint ||
-            type == TransactionRecord::StakeZPIV || type == TransactionRecord::MNReward)
+    return ( (type == TransactionRecord::Generated || type == TransactionRecord::StakeMint ||type == TransactionRecord::MNReward)
             && (status == TransactionStatus::Conflicted || status == TransactionStatus::NotAccepted) );
-}
-
-bool TransactionFilterProxy::isZcTx(int type) const {
-    return (type == TransactionRecord::ZerocoinMint || type == TransactionRecord::ZerocoinSpend || type == TransactionRecord::ZerocoinSpend_Change_zPiv
-            || type == TransactionRecord::ZerocoinSpend_FromMe || type == TransactionRecord::RecvFromZerocoinSpend);
 }
 
 bool TransactionFilterProxy::isStakeTx(int type) const {

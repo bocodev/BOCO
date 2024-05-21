@@ -24,7 +24,7 @@ packages:
 - "python3"
 - "rename"
 remotes:
-- "url": "https://github.com/BocoBF/Boco.git"
+- "url": "https://github.com/bocodev/BOCO.git"
   "dir": "pivx"
 files: []
 script: |

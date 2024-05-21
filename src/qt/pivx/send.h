@@ -1,5 +1,5 @@
 // Copyright (c) 2019-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,7 @@
 #include "coincontroldialog.h"
 #include "qt/pivx/tooltipmenu.h"
 
-static const int MAX_SEND_POPUP_ENTRIES = 8;
+static const int MAX_SEND_POPUP_ENTRIES = 64;
 
 class PIVXGUI;
 class ClientModel;

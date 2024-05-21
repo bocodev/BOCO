@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2016-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -30,7 +30,6 @@ CTxMemPoolEntry::CTxMemPoolEntry(const CTransaction& _tx, const CAmount& _nFee,
     nTxSize = ::GetSerializeSize(tx, SER_NETWORK, PROTOCOL_VERSION);
     nModSize = tx.CalculateModifiedSize(nTxSize);
     nUsageSize = tx.DynamicMemoryUsage();
-    hasZerocoins = tx.ContainsZerocoins();
 
     nCountWithDescendants = 1;
     nSizeWithDescendants = nTxSize;
@@ -375,11 +374,9 @@ bool CTxMemPool::addUnchecked(const uint256& hash, const CTxMemPoolEntry &entry,
 
     const CTransaction& tx = newit->GetTx();
     std::set<uint256> setParentTransactions;
-    if(!tx.HasZerocoinSpendInputs()) {
-        for (unsigned int i = 0; i < tx.vin.size(); i++) {
-            mapNextTx[tx.vin[i].prevout] = CInPoint(&tx, i);
-            setParentTransactions.insert(tx.vin[i].prevout.hash);
-        }
+    for (unsigned int i = 0; i < tx.vin.size(); i++) {
+        mapNextTx[tx.vin[i].prevout] = CInPoint(&tx, i);
+        setParentTransactions.insert(tx.vin[i].prevout.hash);
     }
     // Don't bother worrying about child transactions of this one.
     // Normal case of a new transaction arriving is that there can't be any
@@ -613,7 +610,6 @@ void CTxMemPool::check(const CCoinsViewCache* pcoins) const
         innerUsage += memusage::DynamicUsage(links.parents) + memusage::DynamicUsage(links.children);
         bool fDependsWait = false;
         setEntries setParentCheck;
-        bool fHasZerocoinSpends = false;
         for (const CTxIn& txin : tx.vin) {
             // Check that every mempool transaction's inputs refer to available coins, or other mempool tx's.
             indexed_transaction_set::const_iterator it2 = mapTx.find(txin.prevout.hash);
@@ -622,50 +618,43 @@ void CTxMemPool::check(const CCoinsViewCache* pcoins) const
                 assert(tx2.vout.size() > txin.prevout.n && !tx2.vout[txin.prevout.n].IsNull());
                 fDependsWait = true;
                 setParentCheck.insert(it2);
-            } else if(!txin.IsZerocoinSpend() && !txin.IsZerocoinPublicSpend()) {
-                assert(pcoins->HaveCoin(txin.prevout));
             } else {
-                fHasZerocoinSpends = true;
+                assert(pcoins->HaveCoin(txin.prevout));
             }
             // Check whether its inputs are marked in mapNextTx.
-            if(!fHasZerocoinSpends) {
-                std::map<COutPoint, CInPoint>::const_iterator it3 = mapNextTx.find(txin.prevout);
-                assert(it3 != mapNextTx.end());
-                assert(it3->second.ptx == &tx);
-                assert(it3->second.n == i);
-            } else {
-                fDependsWait=false;
-            }
+            std::map<COutPoint, CInPoint>::const_iterator it3 = mapNextTx.find(txin.prevout);
+            assert(it3 != mapNextTx.end());
+            assert(it3->second.ptx == &tx);
+            assert(it3->second.n == i);
             i++;
         }
         assert(setParentCheck == GetMemPoolParents(it));
         // Check children against mapNextTx
-        if (!fHasZerocoinSpends) {
-            CTxMemPool::setEntries setChildrenCheck;
-            std::map<COutPoint, CInPoint>::const_iterator iter = mapNextTx.lower_bound(COutPoint(tx.GetHash(), 0));
-            int64_t childSizes = 0;
-            CAmount childFees = 0;
-            for (; iter != mapNextTx.end() && iter->first.hash == tx.GetHash(); ++iter) {
-                txiter childit = mapTx.find(iter->second.ptx->GetHash());
-                assert(childit != mapTx.end()); // mapNextTx points to in-mempool transactions
-                if (setChildrenCheck.insert(childit).second) {
-                    childSizes += childit->GetTxSize();
-                    childFees += childit->GetFee();
-                }
+        CTxMemPool::setEntries setChildrenCheck;
+        std::map<COutPoint, CInPoint>::const_iterator iter = mapNextTx.lower_bound(COutPoint(tx.GetHash(), 0));
+        int64_t childSizes = 0;
+        CAmount childFees = 0;
+        for (; iter != mapNextTx.end() && iter->first.hash == tx.GetHash(); ++iter) {
+            txiter childit = mapTx.find(iter->second.ptx->GetHash());
+            assert(childit != mapTx.end()); // mapNextTx points to in-mempool transactions
+            if (setChildrenCheck.insert(childit).second) {
+                childSizes += childit->GetTxSize();
+                childFees += childit->GetFee();
             }
-            assert(setChildrenCheck == GetMemPoolChildren(it));
-            // Also check to make sure size/fees is greater than sum with immediate children.
-            // just a sanity check, not definitive that this calc is correct...
-            // also check that the size is less than the size of the entire mempool.
-            if (!it->IsDirty()) {
-                assert(it->GetSizeWithDescendants() >= childSizes + it->GetTxSize());
-                assert(it->GetFeesWithDescendants() >= childFees + it->GetFee());
-            } else {
-                assert(it->GetSizeWithDescendants() == it->GetTxSize());
-                assert(it->GetFeesWithDescendants() == it->GetFee());
-            }
-            assert(it->GetFeesWithDescendants() >= 0);
         }
+        assert(setChildrenCheck == GetMemPoolChildren(it));
+        // Also check to make sure size/fees is greater than sum with immediate children.
+        // just a sanity check, not definitive that this calc is correct...
+        // also check that the size is less than the size of the entire mempool.
+        if (!it->IsDirty()) {
+            assert(it->GetSizeWithDescendants() >= childSizes + it->GetTxSize());
+            assert(it->GetFeesWithDescendants() >= childFees + it->GetFee());
+        } else {
+            assert(it->GetSizeWithDescendants() == it->GetTxSize());
+            assert(it->GetFeesWithDescendants() == it->GetFee());
+        }
+        assert(it->GetFeesWithDescendants() >= 0);
+        
 
         if (fDependsWait)
             waitingOnDependants.push_back(&(*it));
@@ -821,8 +810,6 @@ void CTxMemPool::ClearPrioritisation(const uint256 hash)
 
 bool CTxMemPool::HasNoInputsOf(const CTransaction &tx) const
 {
-    if (tx.HasZerocoinSpendInputs())
-        return true;
     for (unsigned int i = 0; i < tx.vin.size(); i++)
         if (exists(tx.vin[i].prevout.hash))
             return false;
@@ -1012,4 +999,3 @@ void CTxMemPool::TrimToSize(size_t sizelimit, std::vector<COutPoint>* pvNoSpends
 }
 
 SaltedTxidHasher::SaltedTxidHasher() : k0(GetRand(std::numeric_limits<uint64_t>::max())), k1(GetRand(std::numeric_limits<uint64_t>::max())) {}
-

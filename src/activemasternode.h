@@ -1,12 +1,13 @@
 // Copyright (c) 2014-2016 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ACTIVEMASTERNODE_H
 #define ACTIVEMASTERNODE_H
 
+#include "activemasternodeconfig.h"
 #include "init.h"
 #include "key.h"
 #include "masternode.h"
@@ -23,9 +24,6 @@
 class CActiveMasternode
 {
 private:
-    /// Ping Masternode
-    bool SendMasternodePing(std::string& errorMessage);
-
     int status;
     std::string notCapableReason;
 
@@ -37,9 +35,13 @@ public:
         status = ACTIVE_MASTERNODE_INITIAL;
     }
 
+    std::string strAlias {""};
+
     // Initialized by init.cpp
     // Keys for the main Masternode
     CPubKey pubKeyMasternode;
+
+    std::string strMasterNodePrivKey {""};
 
     // Initialized while registering Masternode
     Optional<CTxIn> vin;
@@ -53,6 +55,9 @@ public:
 
     /// Enable cold wallet mode (run a Masternode with no funds)
     bool EnableHotColdMasterNode(CTxIn& vin, CService& addr);
+
+    /// Ping Masternode
+    bool SendMasternodePing(std::string& errorMessage);
 };
 
-#endif
+#endif //ACTIVEMASTERNODE_H

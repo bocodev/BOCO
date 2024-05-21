@@ -1,6 +1,6 @@
 // Copyright 2014 BitPay, Inc.
 // Copyright (c) 2017-2019 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -316,4 +316,3 @@ BOOST_AUTO_TEST_CASE(univalue_readwrite)
 }
 
 BOOST_AUTO_TEST_SUITE_END()
-

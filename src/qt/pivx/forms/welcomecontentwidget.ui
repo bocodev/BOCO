@@ -657,7 +657,7 @@
                      <enum>Qt::NoFocus</enum>
                     </property>
                     <property name="text">
-                     <string>Boco</string>
+                     <string>Welcome</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
@@ -698,7 +698,7 @@
                      <enum>Qt::NoFocus</enum>
                     </property>
                     <property name="text">
-                     <string>Forum</string>
+                     <string>Privacy</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
@@ -936,8 +936,7 @@
                       <string notr="true">padding:1px;</string>
                      </property>
                      <property name="text">
-                      <string>Welcome to
-Boco Wallet</string>
+                      <string>Welcome to Boco Wallet</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignCenter</set>
@@ -963,7 +962,7 @@ Boco Wallet</string>
                    <item alignment="Qt::AlignHCenter">
                     <widget class="QLabel" name="labelMessage2">
                      <property name="text">
-                      <string>Boco beyond forum is the first cryptocurrency forum with its own blockchain based on PoS.</string>
+                      <string>Bonus Coin (BOCO) is a fun Proof of Stake and Masternode coin. We aim to be a marketing agency for cryptocurrency projects through our airdrop, faucet and lottery website platforms.</string>
                      </property>
                      <property name="alignment">
                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -1036,7 +1035,7 @@ Boco Wallet</string>
                    </size>
                   </property>
                   <property name="text">
-                   <string>Be inspired by community</string>
+                   <string>How BOCO respects your privacy?</string>
                   </property>
                  </widget>
                 </item>
@@ -1056,7 +1055,7 @@ Boco Wallet</string>
                 <item>
                  <widget class="QLabel" name="labelMessage3">
                   <property name="text">
-                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Share your opinion, solve your doubts and contribute adding new content while receiving passive income from our Masternodes and Staking.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;As our manifesto says: Privacy is a non-negotiable basic human right; it grants users the freedom to share their data whenever and with whomever they want - BOCO believes in self sovereignty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -1139,7 +1138,7 @@ Boco Wallet</string>
                 <item>
                  <widget class="QLabel" name="labelMessage4">
                   <property name="text">
-                   <string>Masternodes are part of the infrastructure that sustains Boco coin. They verify new blocks and perform special roles in governing the blockchain.</string>
+                   <string>The masternode network is BOCO's second layer network on top of the blockchain that enables our DAO to provide decentralized governance and a treasury.</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>

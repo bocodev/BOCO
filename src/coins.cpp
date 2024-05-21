@@ -1,6 +1,6 @@
 // Copyright (c) 2012-2014 The Bitcoin developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -230,10 +230,6 @@ CAmount CCoinsViewCache::GetValueIn(const CTransaction& tx) const
     if (tx.IsCoinBase())
         return 0;
 
-    //todo are there any security precautions to take here?
-    if (tx.HasZerocoinSpendInputs())
-        return tx.GetZerocoinSpent();
-
     CAmount nResult = 0;
     for (unsigned int i = 0; i < tx.vin.size(); i++)
         nResult += AccessCoin(tx.vin[i].prevout).out.nValue;
@@ -243,7 +239,7 @@ CAmount CCoinsViewCache::GetValueIn(const CTransaction& tx) const
 
 bool CCoinsViewCache::HaveInputs(const CTransaction& tx) const
 {
-    if (!tx.IsCoinBase() && !tx.HasZerocoinSpendInputs()) {
+    if (!tx.IsCoinBase()) {
         for (unsigned int i = 0; i < tx.vin.size(); i++) {
             if (!HaveCoin(tx.vin[i].prevout)) {
                 return error("%s : invalid input %s", __func__, tx.vin[i].prevout.ToString());
@@ -263,7 +259,7 @@ double CCoinsViewCache::GetPriority(const CTransaction& tx, int nHeight, CAmount
         const Coin& coin = AccessCoin(txin.prevout);
         if (coin.IsSpent()) continue;
         if (coin.nHeight <= (unsigned)nHeight) {
-            dResult += coin.out.nValue * (nHeight - coin.nHeight);
+            dResult += (coin.out.nValue / COIN) * (nHeight - coin.nHeight);
             inChainInputValue += coin.out.nValue;
         }
     }

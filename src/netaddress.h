@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -142,6 +142,8 @@ public:
     CService(const CNetAddr& ip, unsigned short port);
     CService(const struct in_addr& ipv4Addr, unsigned short port);
     CService(const struct sockaddr_in& addr);
+    explicit CService(const char* pszIpPort, int portDefault);
+    explicit CService(const std::string& strIpPort, int portDefault);
     void Init();
     void SetPort(unsigned short portIn);
     unsigned short GetPort() const;

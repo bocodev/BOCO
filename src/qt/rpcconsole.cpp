@@ -1,7 +1,7 @@
 // Copyright (c) 2011-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -54,6 +54,7 @@ const QString ZAPTXES2("-zapwallettxes=2");
 const QString UPGRADEWALLET("-upgradewallet");
 const QString REINDEX("-reindex");
 const QString RESYNC("-resync");
+const QString REWIND("-rewindblockindex");
 
 const struct {
     const char* url;
@@ -479,9 +480,12 @@ void RPCConsole::setClientModel(ClientModel* model)
         for (size_t i = 0; i < commandList.size(); ++i)
         {
             wordList << commandList[i].c_str();
+            wordList << ("help " + commandList[i]).c_str();
         }
 
+        wordList.sort();
         autoCompleter = new QCompleter(wordList, this);
+        autoCompleter->setModelSorting(QCompleter::CaseSensitivelySortedModel);
         ui->lineEdit->setCompleter(autoCompleter);
 
         // clear the lineEdit after activating from QCompleter
@@ -577,6 +581,8 @@ void RPCConsole::buildParameterlist(QString arg)
     args.removeAll(ZAPTXES2);
     args.removeAll(UPGRADEWALLET);
     args.removeAll(REINDEX);
+    args.removeAll(RESYNC);
+    args.removeAll(REWIND);
 
     // Append repair parameter to command line.
     args.append(arg);
@@ -607,10 +613,10 @@ void RPCConsole::clear()
         "table { }"
         "td.time { color: #808080; padding-top: 3px; } "
         "td.message { font-family: Courier, Courier New, Lucida Console, monospace; font-size: 12px; } " // Todo: Remove fixed font-size
-        "td.cmd-request { color: #d5a92a; } "
-        "td.cmd-error { color: #A24E7E; } "
-        ".secwarning { color: #A24E7E; }"
-        "b { color: #d5a92a; } ");
+        "td.cmd-request { color: #006060; } "
+        "td.cmd-error { color: red; } "
+        ".secwarning { color: red; }"
+        "b { color: #006060; } ");
 
 #ifdef Q_OS_MAC
     QString clsKey = "(⌘)-L";
@@ -618,10 +624,11 @@ void RPCConsole::clear()
     QString clsKey = "Ctrl-L";
 #endif
 
-    message(CMD_REPLY, (tr("<u>Welcome to the BOCO RPC console.</u>") + "<br>" +
-                        tr("Use <b>up</b> and <b>down</b> arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
+    message(CMD_REPLY, (tr("Welcome to the BOCO RPC console.") + "<br>" +
+                        tr("Use up and down arrows to navigate history, and %1 to clear screen.").arg("<b>"+clsKey+"</b>") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.") +
                         "<br><span class=\"secwarning\"><br>" +
+                        tr("WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.") +
                         "</span>"),
                         true);
 }
@@ -1048,4 +1055,3 @@ void RPCConsole::showOrHideBanTableIfRequired()
     ui->banlistWidget->setVisible(visible);
     ui->banHeading->setVisible(visible);
 }
-

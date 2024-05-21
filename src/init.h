@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2017-2020 The PIVX developers
-// Copyright (c) 2021 The DECENOMY Core Developers
+// Copyright (c) 2021-2022 The DECENOMY Core Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,9 +10,15 @@
 
 #include <string>
 
+const bool DEFAULT_PROXYRANDOMIZE = true;
+const bool DEFAULT_REST_ENABLE = false;
+const bool DEFAULT_DISABLE_SAFEMODE = false;
+const bool DEFAULT_STOPAFTERBLOCKIMPORT = false;
+const bool DEFAULT_MASTERNODE  = false;
+const bool DEFAULT_MNCONFLOCK = true;
+
 class CScheduler;
 class CWallet;
-class CzPIVWallet;
 
 namespace boost
 {
